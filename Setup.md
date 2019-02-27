@@ -10,7 +10,7 @@ The URL for the GitHub Repository with these instructions and the exercises is *
 ### Create a Jenkins Account
 
 1. Goto to the Workshop URL provided by the instructor;
-2. Click on the **create an account** link in the middle above the **Username** input.<p><img src="img/setup/setup-login.png" width=350/>
+2. Click on the **create an account** link in the middle above the **Username** input.<p><img src="img/setup/setup-create-an-account.png" width=350/>
 3. Complete the **Create an account!** form (all fields are required) and click the **Create account** button;<p><img src="img/setup/setup-create-account.png" width=350/>
 4. You should see a **Success** page - click on **the top page** link;<p><img src="img/setup/setup-create-account-success.png" width=550/>
 
@@ -54,9 +54,9 @@ Create a Github organization to use for this workshop:
 
 ## Fork the Workshop Repositories
 
-The workshop utilizes several existing repositories from the [CloudBees Days GitHub Organization](https://github.com/cloudbees-dats). Fork the following repositories into the GitHub Organization that you created above (if you are not sure how to fork a repository - see this [GitHub Guide on forking](https://guides.github.com/activities/forking/)):
+The workshop utilizes several existing repositories from the [CloudBees Days GitHub Organization](https://github.com/cloudbees-days). Fork the following repositories into the GitHub Organization that you created above (if you are not sure how to fork a repository - see this [GitHub Guide on forking](https://guides.github.com/activities/forking/)):
 
-1. https://github.com/cloudbees-core-cd-workshop/helloworld-nodejs 
+1. https://github.com/cloudbees-days/helloworld-nodejs 
 
 ## Finished Set-up
 You should see the following **Create a new Pipeline** screen for your Team:
