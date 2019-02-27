@@ -10,12 +10,9 @@ That event will be published **across Team Masters** via the CloudBees Operation
 
 The Cross Team Collaboration feature has a configurable router for routing events and you will need to configure the Notification router on your Team Master before you will be able to receive the event published by the **beedemo-ops** Team Master.
 
-1. First you need to update the **Notification Router Implementation** to use the **Operations Center Messaging** router by clicking on the **Manage Jenkins** link - on the left side at the root of your Team Master (classic ui). <p><img src="img/cross-team/cross_team_manage_jenkins.png" width=850/>
-2. Next, scroll down and click on **Configure Notification** link. <p><img src="img/cross-team/cross_team_configure_notification.png" width=850/>
-3. Check the **Enabled** checkbox and under **Notification Router Implementation** select the **Operations Center Messaging** option, and the click the **Save** button. <p><img src="img/cross-team/cross_team_enable_notification.png" width=850/>
-4. Before the **hello-api** Pipeline's `hello-api-push-event` can trigger our **helloworld-nodejs** Pipeline job we must listen for the event. We do that by adding a `trigger` to our **nodejs-app/Jenkinsfile.template** Pipeline script.
-5. Open the GitHub editor for the **nodejs-app/Jenkinsfile.template** Pipeline script in the **master** branch of your forked **custom-marker-pipelines** repository.
-6. Add the following `trigger` block just above the top-level `stages` block:
+1. Before the **hello-api** Pipeline's `hello-api-push-event` can trigger our **helloworld-nodejs** Pipeline job we must listen for the event. We do that by adding a `trigger` to your **Jenkinsfile** Pipeline script.
+2. Open the GitHub editor for the **nodejs-app/Jenkinsfile.template** Pipeline script in the **master** branch of your forked **custom-marker-pipelines** repository.
+3. Add the following `trigger` block just above the top-level `stages` block:
 
 ```groovy
   triggers {
