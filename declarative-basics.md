@@ -8,42 +8,53 @@ We must exit the Blue Ocean UI to the Jenkins classic UI to complete the steps i
 
 1. Click the ***Go to classic*** icon at the top of common section of Blue Ocean’s navigation bar. <p><img src="img/intro/go_to_classic.png" width=850/>
 
-Now, let's add your GitHub credentials to the Jenkins' Credentials manager to be used for the *Multibranch Pipeline* project we will create next:
+Now, let's add your GitHub personal access token to the Jenkins' Credentials manager to be used for both GitHub webhook management and the *Multibranch Pipeline* project we will create:
 
 1. Navigate to the top-level of your Team Master - this should be one level-up from where you exit the Blue Ocean UI. You should see a **Manage Jenkins** link in the left navigation menu.
 2. Click on the **Credentials** link in the left navigation menu. <p><img src="img/intro/credentials_breadcrumbs_left_nav2.png" width=850/>
-3. Click on the **(global)** link under **Stores scoped to Jenkins** <p><img src="img/intro/credential_folder_scope2.png" width=850/>
+3. Click on the **github.com** link under **Stores scoped to Jenkins** <p><img src="img/intro/credential_scope_github.png" width=850/> - storing it in this scope will only allow the credential to be used for *github.com* URLs.
 4. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_link2.png" width=850/>
 5. Fill out the form (**Username with password**)
   - **Username**: The GitHub user name
-  - **Password**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook,admin:org_hook)
+  - **Password**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
   - **ID**: Create an ID for your credentials (something like **yourorg-github-token**)
   - **Description**: Can be left blank if you want <p><img src="img/intro/credential_github_token_save2.png" width=850/>
 6. Click on **OK**
 
+Now we need to add another credential for the Jenkins GitHub global configuration in order for Jenkins to automatically create webhooks for us when we add and GitHub repositories to a Jenkins job as we will do when we create a Multibranch Pipeline project in the next exercise. The *GitHub Plugin Configuration* global configuration requires the **Secret text** credential type as opposed to **Username with password**.
+
+1. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_secret_text.png" width=850/>
+2. Select **Secret text** from the Credential **Kind** drop down <p><img src="img/intro/credential_select_secret_text.png" width=850/>
+3. [Enter your GitHub personal access token as the value for the **Secret**, pro](Fill out the form (**Username with password**)
+  - **Secret**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
+  - **ID**: Create an ID for your credentials (something like **github-{username}-secret** - it must be different than the ID used for the **Username with password** credential you created above)
+  - **Description**: Can be left blank if you want <p><img src="img/intro/credential_secret_save.png" width=850/>)
+4. Click on **OK**
+
 ## Create a Multibranch Pipeline Project
 
-In this exercise we are going to create a special type of Jenkins Pipeline project referred to as an [*Multibranch Pipeline*](https://jenkins.io/doc/book/pipeline/multibranch/#creating-a-multibranch-pipeline). The Jenkins *Multibranch Pipeline* project will scan a GitHub Repository to discover the Organization’s repositories, automatically creating **managed** [*Multibranch Pipeline* jobs](https://jenkins.io/doc/book/pipeline/multibranch/#creating-a-multibranch-pipeline) for any repository with at least one branch containing a *project recognizer* - typically **Jenkinsfile**. We will use the GitHub repository that you forked in **[Setup - Fork the Workshop Repositories](./Setup.md#fork-the-workshop-repositories)**. A Jenkins *Multibranch Pipeline* project will also utilize a GitHub repository level webhook it creates to automatically manage Jenkins jobs - when a branch (including pull requests) is deleted from or added to the GitHub repository.
+In this exercise we are going to create a special type of Jenkins Pipeline project referred to as a [*Multibranch Pipeline*](https://jenkins.io/doc/book/pipeline/multibranch/#creating-a-multibranch-pipeline). The Jenkins *Multibranch Pipeline* project will scan a GitHub Repository to discover the branches of a repository, automatically creating **managed** Pipeline Job for any branch containing a *project recognizer* - typically a file named **Jenkinsfile**. We will use the GitHub repository that you forked in **[Setup - Fork the Workshop Repositories](./Setup.md#fork-the-workshop-repositories)**. A Jenkins *Multibranch Pipeline* project will also utilize a GitHub repository level webhook it creates to automatically manage Jenkins jobs - when a branch (including pull requests) is deleted from or added to the GitHub repository.
 
 In order to complete the following exercise you should have [forked the following repository](./Setup.md#fork-the-workshop-repositories) into the Github Organization you created in **[Setup - Create a GitHub Organization](./Setup.md#create-a-github-organization)**:
 
 * https://github.com/cloudbees-cd-acceleration-workshop/helloworld-nodejs  
 
+
 Once that repository is forked:
 
-2. Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. <p><img src="img/intro/org_folder_team_folder.png" width=850/> 
-3. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master <p><img src="img/intro/org_folder_new_item.png" width=850/> 
-4. Enter **helloworld-nodejs** as the **Item Name** 
-5. Select **Multibranch Pipeline** <p><img src="img/intro/org_folder_item.png" width=850/>
-6. Click **Ok**
-7. Select the credentials you created above from the **Credentials** drop down <p><img src="img/intro/org_folder_credentials.png" width=850/>
-8. Make sure that the **Owner** field matches the name of your GitHub Organization name. <p><img src="img/intro/org_folder_scm_config.png" width=850/>
-9.  Select the **helloworld-nodejs** repository from your GitHub Organization.
-10. Click on **Save**
-11. After the scan is complete, click on the bread-crumb link to go back to your **Multibranch Piepline** Jenkins project folder
-12. When the scan is complete your **Multibranch Piepline** Jenkins project should be **empty**!<p>However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub repository **Settings**. <p><img src="img/intro/custom_marker_org_webhook.png" width=850/>
-13. The reason why the scan did not find any branches is because there is no branch in your repository with a `Jenkinsfile` in it, so let's fix that. In your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/custom_marker_create_file.png" width=850/>
-14. Name the file `Jenkinsfile` and add the following content:
+1. Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs as only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/multibranch_team_folder.png" width=850/> 
+2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master <p><img src="img/intro/multibranch_new_item.png" width=850/> 
+3. Enter **helloworld-nodejs** as the **Item Name** 
+4. Select **Multibranch Pipeline** <p><img src="img/intro/org_folder_item.png" width=850/>
+5. Click **Ok**
+6. Select the credentials you created above from the **Credentials** drop down <p><img src="img/intro/org_folder_credentials.png" width=850/>
+7. Make sure that the **Owner** field matches the name of your GitHub Organization name. <p><img src="img/intro/org_folder_scm_config.png" width=850/>
+8.  Select the **helloworld-nodejs** repository from your GitHub Organization.
+9.  Click on **Save**
+10. After the scan is complete, click on the bread-crumb link to go back to your **Multibranch Piepline** Jenkins project folder
+11. When the scan is complete your **Multibranch Piepline** Jenkins project should be **empty**!<p>However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub repository **Settings**. <p><img src="img/intro/custom_marker_org_webhook.png" width=850/>
+12. The reason why the scan did not find any branches is because there is no branch in your repository with a `Jenkinsfile` in it, so let's fix that. In your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/custom_marker_create_file.png" width=850/>
+13. Name the file `Jenkinsfile` and add the following content:
 ```
 pipeline {
 

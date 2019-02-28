@@ -52,11 +52,11 @@ Create a Github organization to use for this workshop:
 
 >NOTE: Even though you have to provide an email for billing, you will not be charged anything as long as you choose the free option.
 
-## Fork the Workshop Repositories
+## Fork the Workshop Repository
 
-The workshop utilizes several existing repositories from the [CloudBees Days GitHub Organization](https://github.com/cloudbees-days). Fork the following repositories into the GitHub Organization that you created above (if you are not sure how to fork a repository - see this [GitHub Guide on forking](https://guides.github.com/activities/forking/)):
+The workshop utilizes the **helloworld-nodejs** repository from the [CloudBees Days GitHub Organization](https://github.com/cloudbees-days). Fork the **helloworld-nodejs** repository into the GitHub Organization that you created above (if you are not sure how to fork a repository - see this [GitHub Guide on forking](https://guides.github.com/activities/forking/)):
 
-1. https://github.com/cloudbees-days/helloworld-nodejs 
+* https://github.com/cloudbees-days/helloworld-nodejs 
 
 ## Finished Set-up
 You should see the following **Create a new Pipeline** screen for your Team:
