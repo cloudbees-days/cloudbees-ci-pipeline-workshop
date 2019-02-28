@@ -217,9 +217,20 @@ pipeline {
 In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld-nodejs** repository using the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when). We will accomplish this by adding a branch specific `stage` to the `Jenkinsfile` in your forked **helloworld-nodejs** repository.
 
 1. Navigate to and open the GitHub editor for the `Jenkinsfile` file in your forked **helloworld-nodejs** repository
-2. Insert the following stage after the existing **Test** stage, commit the change and note the `beforeAgent true` option - this setting will result in the `when` condition being evaluated before acquiring an `agent` for the `stage`:
+2. Insert the following stage after the existing **Test** stage, commit the change and note the `beforeAgent true` option - this setting will result in the `when` condition being evaluated before acquiring an `agent` for the `stage` so the entire `pipeline` matches the following:
 
 ```
+pipeline {
+  agent { label 'nodejs-app' }
+  stages {
+    stage('Test') {
+      steps {
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
     stage('Build and Push Image') {
       when {
          beforeAgent true
@@ -229,14 +240,11 @@ In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld
          echo "TODO - build and push image"
       }
     }
+  }
+}
 ```
-3. Next, in GitHub, navigate to your forked **helloworld-nodejs** repository - click on the **Branch** drop down menu, type ***development*** in the input box, and then click on the blue box to create the new branch - ***Create branch: development*** <p><img src="img/intro/conditional_create_dev_branch.png" width=800/>
-4. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master. You should see that a new Pipeline job for the new branch was created automatically (thanks to the GitHub webhook that was created earlier when we created the GitHub Organization project) and the job should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
-
->NOTE: Creating the new ***development*** branch in GitHub triggered the webhook that was auto-created when you created the GitHub Organization project on your Team Master resulting in a new Pipeline job automatically being created for the ***development*** branch in the **helloworld-nodejs** Multibranch Pipeline folder. Up until now we hadn't made any commits in your forked **helloworld-nodejs** repository so no webhook events were triggered to kick-off the job on your Team Master. In the image below, note the two branch jobs and the ***Push event*** that triggered the creation of the new **development** job and kicked-off a run for that branch.
-<p><img src="img/intro/conditional_branches_with_push_event.png" width=800/>
-
-5. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master and run the job. The new conditional ***Build and Push Image*** `stage` will now run. <p><img src="img/intro/conditional_master_branch.png" width=550/>
+3. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
+4. 
 
 ## Stage Specific Agents and Agent None
 
