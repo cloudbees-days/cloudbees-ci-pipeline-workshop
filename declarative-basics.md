@@ -44,7 +44,7 @@ In this exercise we will add a GitHub server configuration to enable Jenkins to 
   - **Credentials**: Select the **Secret text** credential your created above
   - **Manage hooks**: checked
 5. Click the **Test connection** button to verify your configuration.
-6. Click the **Save** button <p>img src="img/intro/github_global_config_save.png" width=850/>
+6. Click the **Save** button <p><img src="img/intro/github_global_config_save.png" width=850/>
 
 ## Create a Multibranch Pipeline Project
 
