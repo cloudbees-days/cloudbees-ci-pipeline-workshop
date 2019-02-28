@@ -43,8 +43,8 @@ In this exercise we will add a GitHub server configuration to enable Jenkins to 
   - **API URL**: *https://api.github.com* (default)
   - **Credentials**: Select the **Secret text** credential your created above
   - **Manage hooks**: checked
-5. Click the **Test connection** button to verify your configuration.
-6. Click the **Save** button <p><img src="img/intro/github_global_config_save.png" width=850/>
+5. Click the **Test connection** button to verify your configuration <p><img src="img/intro/github_global_config_save.png" width=850/>
+6. Click the **Save** button
 
 ## Create a Multibranch Pipeline Project
 
@@ -76,8 +76,8 @@ pipeline {
 
 }
 ```
-15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request.** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
-16. Navigatd back to your new Multibranch project in Jenkins and refresh the page. You should have a new job that failed <p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
+15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request.**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
+16. Navigatd back to your new Multibranch project in Jenkins and refresh the page. You should have a new failed job based on the branch you just added <p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
 
@@ -99,10 +99,7 @@ WorkflowScript: 1: Missing required section "agent" @ line 1, column 1.
 
 [Declarative Pipelines](https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline) must be enclosed within a `pipeline` block - which we have. But Declarative Pipelines must also contain a top-level `agent` declaration, and must contain exactly one `stages` block at the top level. Typically, the `stages` block must have at least one `stage` block but can have an unlimited number of additional `stage` blocks. Each `stage` block must have exactly one `steps` block. 
 
-1. We will use the GitHub file editor to update the `nodejs-app/Jenkinsfile.template` file in your forked **custom-marker-pipelines** repository. Navigate to the `custom-marker-pipelines/nodejs-app/Jenkinsfile.template` file in the **master** branch of your forked repository and then click on the pencil icon in the upper right to edit that file. <p><img src="img/intro/basic_snytax_edit_github.png" width=850/>
-
-> NOTE: Remember we are using a CloudBees Core feature that allows us to specify a Pipeline script from a different source code repository than the one where the application code is committed. This may be a bit confusing at first as commits to your *template* will not trigger a build via GitHub webhooks because we aren't actually making a commit to the application repository.
-
+1. We will use the GitHub file editor to update the `Jenkinsfile` file in your forked **helloworld-nodejs** repository. Navigate to the `Jenkinsfile` file in the **development** branch of your forked repository and then click on the pencil icon in the upper right to edit that file. <p><img src="img/intro/basic_snytax_edit_github.png" width=850/>
 2. Replace the contents of that file with the following Declarative Pipeline:
 
 ```groovy
@@ -118,19 +115,12 @@ pipeline {
   }
 }
 ```
-
-3. Add a commit description and then click the **Commit Changes** button with the default selection of *Commit directly to the master branch* selected.
+<p><img src="img/intro/basic_snytax_commit_to_development.png" width=850/><p>
+3. Add a commit description and then click the **Commit Changes** button with the default selection of *Commit directly to the `development` branch* selected.
 4. Navigate back to the **helloworld-nodejs** *master* branch job on your Team Master and click the **Build Now** button in the left menu. <p><img src="img/intro/basic_syntax_build_now.png" width=550/>
 5. Your job will complete successfully. Note some things from the log:
   
-   i. The custom marker script - `nodejs-app/Jenkinsfile.template` - is being pulled from your forked **custom-marker-pipelines** forked repository and not from the **helloworld-nodejs** repository:
-
-  ```
-  ...
-  Obtained nodejs-app/Jenkinsfile.template from git https://github.com/cd-accel-beedemo/custom-marker-pipelines.git
-  ...
-  ```
-
+   i. The `Jenkinsfile` is being pulled from the **development** branch of your forked **helloworld-nodejs** repository.
    ii. The agent is being provisioned from a Kubernetes Pod Template (more on this in the next lesson):
 
   ```
@@ -139,7 +129,7 @@ pipeline {
   ...
   ```
 
-   iii. Your fork of the **helloworld-nodejs** repository is being checked out, even though you did not put any steps in the `nodejs-app/Jenkinsfile.template` to do so:
+   iii. Your fork of the **helloworld-nodejs** repository is being checked out, even though you did not put any steps in the `Jenkinsfile` to do so:
 
   ```
   ...
@@ -157,7 +147,7 @@ openjdk version "1.8.0_171"
 ...
 ```
   
-> **NOTE:** You may have noticed that your Pipeline GitHub repository is being checked out even though you didn't specify that in your Jenkinsfile. Declarative Pipeline checks out source code by default using the `checkout scm` step. Furthermore, this automatic checkout will occur in every `stage` that uses a different agent.
+> **NOTE:** You may have noticed that your Pipeline GitHub repository is being checked out even though you didn't specify that in your Jenkinsfile. Declarative Pipeline checks out source code by default without the need to explicitly include the `checkout scm` step. Furthermore, this automatic checkout will occur in every `stage` that uses a different agent.
 
 ## The options Directive
 
