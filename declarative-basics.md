@@ -149,22 +149,6 @@ openjdk version "1.8.0_171"
   
 > **NOTE:** You may have noticed that your Pipeline GitHub repository is being checked out even though you didn't specify that in your Jenkinsfile. Declarative Pipeline checks out source code by default without the need to explicitly include the `checkout scm` step. Furthermore, this automatic checkout will occur in every `stage` that uses a different agent.
 
-## The options Directive
-
-The [`options` directive](https://jenkins.io/doc/book/pipeline/syntax/#options) allows configuring Pipeline-specific options from within the Pipeline itself. We are going to add the `buildDiscarder` `option` to the `Jenkinsfile` file in your forked **helloworld-nodejs** repository.
-
-1. Use the GitHub file editor to update the `Jenkinsfile` file in your forked **helloworld-nodejs** repository - adding the following `options` directive below the `agent` section:
-
-```groovy 
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-  }
-```
-
-2. **Commit Changes** and then navigate to the **development** branch of your **helloworld-nodejs** job in the classic UI on your **Team Master** and once the job has run at least once, the job configuation will be updated to reflect what was added to the Pipeline script. <p><img src="img/intro/options_build_discard.png" width=850/>
-
-> **NOTE:** A Pipeline job must run in Jenkins before any type of Pipeline directive that modifies the job configuration can take effect because there is no way for the Jenkins Master to know about it until it runs on the Jenkins Master. Also, note that for Multibranch Pipeline projects - the only way to modify much of the configuration of the managed branch specific Pipeline jobs is by doing it in the Pipeline Jenkinsfile/script as those jobs are not directly configurable from the Jenkins UI.
-
 ## Kubernetes Agents with CloudBees Core
 
 In this exercise we will get an introduction to the [Jenkins Kubernetes plugin](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md) for running dynamic and ephemeral agents in a Kubernetes cluster - leveraging the scaling abilities of Kubernetes to schedule build agents.
