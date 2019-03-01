@@ -1,6 +1,6 @@
 # Introduction to Pipelines with CloudBees Core
 
-In this first exercise we will create a Multibranch Pipeline project, get an overview of the basic fundamentals of the Declarative Pipeline syntax, get an introduction to Kubernetes based agents and learn how to add conditional logic to a Declarative Pipeline.
+In this first exercise we will create a Multibranch Pipeline project, get an overview of the basic fundamentals of the Declarative Pipeline syntax, get an introduction to Kubernetes based agents, learn how to add conditional logic to a Declarative Pipeline and a global option to the Pipeline to skip the default checkout.
 
 ## Add GitHub Credentials to Your Team Master
 
@@ -169,7 +169,7 @@ The [`options` directive](https://jenkins.io/doc/book/pipeline/syntax/#options) 
 
 In this exercise we will get an introduction to the [Jenkins Kubernetes plugin](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md) for running dynamic and ephemeral agents in a Kubernetes cluster - leveraging the scaling abilities of Kubernetes to schedule build agents.
 
-CloudBees Core has [OOTB support for Kubernetes build agents](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#kubernete-agents). The Kubernetes based agent is contained in a pod, where a pod is a group of one or more containers sharing a common storage system and network. A pod is the smallest deployable unit of computing that Kubernetes can create and manage (you can read more about pods in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod/)).
+CloudBees Core has OOTB support for Kubernetes build agents and allow Kubernetes agents templates - callde Pod Templates - to be defined at either [the Operations Center level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_globally_editing_pod_templates_in_operations_center) or at [the Team Master level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#kubernete-agents). The Kubernetes based agent is contained in a pod, where a pod is a group of one or more containers sharing a common storage system and network. A pod is the smallest deployable unit of computing that Kubernetes can create and manage (you can read more about pods in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod/)).
 
 >NOTE: One of the containers must host the actual Jenkins build agent that communicates with the Jenkins Master (the `slave.jar` file that is used for communication between the CloudBees Team Master and the agent). By convention, this container always exists (and is automatically added to any Pod Templates that do not define a **Container Template** with the name ***jnlp*** ). Again, this special container has the ***Name*** `jnlp` and default execution of the Pipeline always happens in this `jnlp` container (as it did when we used `agent any` above) - unless you declare otherwise with a special Pipeline step provided by the Kuberentes plugin - the `container` step. If needed, this automatically provided `jnlp` container may be overridden by specifying a **Container Template** with the ***Name*** `jnlp` - but that **Container Template** must be able to connect to the Team Master via JNLP with a version of the Jenkins `slave.jar` that corresponds to the Team Master Jenkins verion or the Pod Template will fail to connect to the Team Master.
 
@@ -244,7 +244,7 @@ pipeline {
 }
 ```
 3. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
-4. Now we will create a Pull Request between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
+4. Now we will create a [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
 5. Changed the **base repository** to the **master** branch of your forked **helloworld-nodejs** repository (not the **cloudbees-days** repository), add a comment and then click the **create pull request** button <p><img src="img/intro/conditional_create_pull_request.png" width=800/>
 6. A job will be created for the pull request and once it has completed successfully your pull request show that **All checks have passed**. Go ahead and clikc the **Merge pull request** button and then click the **Confirm merge** button but DO NOT delete the **development** branch <p><img src="img/intro/conditional_merge_pull_request.png" width=800/>
 7. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Click on the run and after it has completed notice that the ***Build and Push Image*** stage was not skipped <p><img src="img/intro/conditional_not_skipped.png" width=800/>
@@ -253,7 +253,7 @@ pipeline {
 
 Up to this point we have had only one global `agent` defined and it is being used by all `stages` of our `pipeline`. However, we don't need an agent for the **Build and Push Image** `stage` (we will be adding Pipeline shared library custom steps later that will provide agents for that and other additional stages). We will update the Pipeline to have no global `agent` and using the current global `nodejs-app` `agent` just for the **Test** `stage`.
 
-1. Navigate to and open the GitHub editor for the **nodejs-app/Jenkinsfile.template** file in the **master** branch of your forked **custom-marker-pipelines** repository.
+1. Navigate to and open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository.
 2. Replace the global `agent` section with the following:
 
 ```
@@ -281,7 +281,7 @@ Up to this point we have had only one global `agent` defined and it is being use
     }
 ```
 
-5. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master and run the job. It will result in the job failing with the following error: 
+5. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. The job will fail with the following error: 
 
 ```
 Required context class hudson.FilePath is missing
@@ -289,11 +289,50 @@ Perhaps you forgot to surround the code with a step that provides this, such as:
 Attempted to execute a step that requires a node context while ‘agent none’ was specified. Be sure to specify your own ‘node { ... }’ blocks when using ‘agent none’.
 ```
 
-1. Open the GitHub editor for the **Jenkinsfile** file in the **master** branch of your forked **helloworld-nodejs** repository and remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and commit the changes.
-2. The commit will trigeger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
+6. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository and remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and commit the changes.
+7. The commit will trigeger the **helloworld-nodejs** **development** branch job again and it will complete successfully.
+
+## Skip Default Checkout
+
+By default, when a global `agent` - that is an `agent` at the `pipeline` level - is used and there aren't any agents defined at the individual `stage` levels, then that same `agent` is shared across all the `stages` and the source code repository associated with the Jenkins job is automatically checked out only once. But you will typically want to use different **agents** for different **stages**. And sometimes you don't need to checkout the source code for every `stage`. That is the case for our Pipeline for the **helloworld-nodejs** repository - we will eventually have different Kubernetes Pod Template based agents for each `stage`. So we are going to revisit the automatic code checkout for Declarative Pipelines that was mentioned in the [Basic Declarative Syntax Structure](./intro-pipeline-cb-core.md#basic-declarative-syntax-structure) lesson. Declarative Pipeline checks out source code by default as part of the `agent` directive. However, we don't need all of the files in the **helloworld-nodejs** repository in all of the stages. The `skipDefaultCheckout` option is a global level `options` to disable automatic checkouts.
+
+1. Use the GitHub file editor to update the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository, update the global `options` directive by adding the `skipDefaultCheckout` job setting below the `buildDiscarder` setting:
+
+```
+pipeline {
+  agent none
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+  }
+```
+
+2. Next, we need to add a checkout step - `checkout scm` to the **Test** stage, we don't want to do a full checkout in any of the other stages but we do need a checkout in this `stage`:
+
+```
+    stage('Test') {
+      agent { label 'nodejs-app' }
+      steps {
+        checkout scm
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
+```
+
+3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master and run the job.
+
+>**NOTE:** The `scm` part of the [`checkout scm` step](https://jenkins.io/doc/pipeline/steps/workflow-scm-step/#code-checkout-code-general-scm) is a special environment variable that is created for all Pipelines configured to load their Pipeline script from source control such as our **helloworld-nodejs** Multibranch Pipeline project.
 
 ## Next Lesson
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from the **after-intro** branch of your forked **custom-marker-pipelines** repository.
+Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
 
-You may proceed to the next set of exercises - **[Pipeline Approvals, Post Actions and Notifications with CloudBees Core](./approvals-post-cb-core.md)** - when your instructor tells you.
+You may proceed to the next set of exercises - **[Pipeline Approvals, Post Actions and Notifications with CloudBees Core](./input.md)** - when your instructor tells you.
+
+### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
+```
+
+```
