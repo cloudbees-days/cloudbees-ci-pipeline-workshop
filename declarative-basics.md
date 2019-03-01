@@ -281,11 +281,11 @@ Up to this point we have had only one global `agent` defined and it is being use
     }
 ```
 
-5. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **Compare & pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch. <p><img src="img/intro/stage_agent_compare_pull.png" width=800/>
-6. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/intro/stage_agent_master_fail.png" width=800/>
-7. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository<p><img src="img/intro/stage_agent_select_development_branch.png" width=800/>
-8. Remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and then repeat step 5 above.
-9. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
+1. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **New pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch. <p><img src="img/intro/stage_agent_new_pull_request.png" width=800/>
+2. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/intro/stage_agent_master_fail.png" width=800/>
+3. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository<p><img src="img/intro/stage_agent_select_development_branch.png" width=800/>
+4. Remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and then repeat step 5 above.
+5. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
 ## Skip Default Checkout
 
@@ -317,17 +317,45 @@ pipeline {
     }
 ```
 
-3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master and run the job.
+3. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **New pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch.
+4.  Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run, and the job will complete successfully.
 
 >**NOTE:** The `scm` part of the [`checkout scm` step](https://jenkins.io/doc/pipeline/steps/workflow-scm-step/#code-checkout-code-general-scm) is a special environment variable that is created for all Pipelines configured to load their Pipeline script from source control such as our **helloworld-nodejs** Multibranch Pipeline project.
 
 ## Next Lesson
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
+Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
 
 You may proceed to the next set of exercises - **[Pipeline Approvals, Post Actions and Notifications with CloudBees Core](./input.md)** - when your instructor tells you.
 
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
-
+pipeline {
+  agent none
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+  }
+  stages {
+    stage('Test') {
+      agent { label 'nodejs-app' }
+      steps {
+        checkout scm
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
+    stage('Build and Push Image') {
+      when {
+        beforeAgent true
+        branch 'master'
+      }
+      steps {
+        echo "TODO - build and push image"
+      }
+    }
+  }
+}
 ```
