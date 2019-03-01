@@ -287,41 +287,6 @@ Up to this point we have had only one global `agent` defined and it is being use
 4. Remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and then repeat step 5 above.
 5. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
-## Skip Default Checkout
-
-By default, when a global `agent` - that is an `agent` at the `pipeline` level - is used and there aren't any agents defined at the individual `stage` levels, then that same `agent` is shared across all the `stages` and the source code repository associated with the Jenkins job is automatically checked out only once. But you will typically want to use different **agents** for different **stages**. And sometimes you don't need to checkout the source code for every `stage`. That is the case for our Pipeline for the **helloworld-nodejs** repository - we will eventually have different Kubernetes Pod Template based agents for each `stage`. So we are going to revisit the automatic code checkout for Declarative Pipelines that was mentioned in the [Basic Declarative Syntax Structure](./intro-pipeline-cb-core.md#basic-declarative-syntax-structure) lesson. Declarative Pipeline checks out source code by default as part of the `agent` directive. However, we don't need all of the files in the **helloworld-nodejs** repository in all of the stages. The `skipDefaultCheckout` option is a global level `options` to disable automatic checkouts.
-
-1. Use the GitHub file editor to update the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository, update the global `options` directive by adding the `skipDefaultCheckout` job setting below the `buildDiscarder` setting:
-
-```
-pipeline {
-  agent none
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
-```
-
-2. Next, we need to add a checkout step - `checkout scm` to the **Test** stage, we don't want to do a full checkout in any of the other stages but we do need a checkout in this `stage`:
-
-```
-    stage('Test') {
-      agent { label 'nodejs-app' }
-      steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-```
-
-3. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **New pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch.
-4.  Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run, and the job will complete successfully.
-
->**NOTE:** The `scm` part of the [`checkout scm` step](https://jenkins.io/doc/pipeline/steps/workflow-scm-step/#code-checkout-code-general-scm) is a special environment variable that is created for all Pipelines configured to load their Pipeline script from source control such as our **helloworld-nodejs** Multibranch Pipeline project.
-
 ## Next Lesson
 
 Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
