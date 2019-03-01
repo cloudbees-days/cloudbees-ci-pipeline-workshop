@@ -253,20 +253,20 @@ pipeline {
 
 Up to this point we have had only one global `agent` defined and it is being used by all `stages` of our `pipeline`. However, we don't need an agent for the **Build and Push Image** `stage` (we will be adding Pipeline shared library custom steps later that will provide agents for that and other additional stages). We will update the Pipeline to have no global `agent` and using the current global `nodejs-app` `agent` just for the **Test** `stage`.
 
-1. Navigate to and open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository.
+1. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository.
 2. Replace the global `agent` section with the following:
 
 ```
   agent none
 ```
 
-3. Next, in the 'Test' `stage` add the following `agent` section right above the `steps` section:
+3. Next, in the **Test** `stage` add the following `agent` section right above the `steps` section:
 
 ```
     agent { label 'nodejs-app' }
 ```
 
-4. You may be asking yourself how the `steps` are able to run in the `stages` where there is no `agent`. Every Pipeline script runs on the Jenkins master using a flyweight executor (i.e. Java thread). However, certain Pipeline `steps` require a heavyweight executor - that is an executor on an `agent` ([more info on flyweight vs heavyweight executors](https://support.cloudbees.com/hc/en-us/articles/360012808951-Pipeline-Difference-between-flyweight-and-heavyweight-Executors)). One such step is the `sh` step. We will add such a step to the **Build and Push Image** `stage` to illustrate this. Add an `sh` step to the **Build and Push Image** stage after the `echo` step so the stage looks like the following:
+4. You may be asking yourself how the `steps` are able to run in the `stages` where there is no `agent`. Every Pipeline script runs on the Jenkins Master using a flyweight executor (i.e. Java thread). However, certain Pipeline `steps` require a heavyweight executor - that is an executor on an `agent` ([more info on flyweight vs heavyweight executors](https://support.cloudbees.com/hc/en-us/articles/360012808951-Pipeline-Difference-between-flyweight-and-heavyweight-Executors)). One such step is the `sh` step. We will add such a step to the **Build and Push Image** `stage` to illustrate this. Add an `sh` step to the **Build and Push Image** stage after the `echo` step so the stage looks like the following:
 
 ```
     stage('Build and Push Image') {
@@ -281,7 +281,8 @@ Up to this point we have had only one global `agent` defined and it is being use
     }
 ```
 
-5. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. The job will fail with the following error: 
+5. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **Compare & pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch. <p><img src="img/intro/stage_agent_compare_pull.png" width=800/>
+6. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: 
 
 ```
 Required context class hudson.FilePath is missing
@@ -289,8 +290,8 @@ Perhaps you forgot to surround the code with a step that provides this, such as:
 Attempted to execute a step that requires a node context while ‘agent none’ was specified. Be sure to specify your own ‘node { ... }’ blocks when using ‘agent none’.
 ```
 
-6. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository and remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and commit the changes.
-7. The commit will trigeger the **helloworld-nodejs** **development** branch job again and it will complete successfully.
+7. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository and remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and then repeat step 5 above.
+8. The commit will trigeger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
 ## Skip Default Checkout
 
