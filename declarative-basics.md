@@ -282,14 +282,7 @@ Up to this point we have had only one global `agent` defined and it is being use
 ```
 
 5. Commit the changes, navigate to the top-level of your forked **helloworld-nodejs** repository, click on the **Compare & pull request** button and create a pull request targeting your **master** branch and merge the pull request to your **master** branch. <p><img src="img/intro/stage_agent_compare_pull.png" width=800/>
-6. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: 
-
-```
-Required context class hudson.FilePath is missing
-Perhaps you forgot to surround the code with a step that provides this, such as: node
-Attempted to execute a step that requires a node context while ‘agent none’ was specified. Be sure to specify your own ‘node { ... }’ blocks when using ‘agent none’.
-```
-
+6. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/intro/stage_agent_master_fail.png" width=800/>
 7. Open the GitHub editor for the **Jenkinsfile** file in the **development** branch of your forked **helloworld-nodejs** repository and remove the `sh 'java -version'` step from the **Build and Push Image** `stage` and then repeat step 5 above.
 8. The commit will trigeger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
