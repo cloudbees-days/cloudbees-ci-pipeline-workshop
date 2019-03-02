@@ -243,14 +243,13 @@ You may proceed to the next set of exercises - **[Inline Pipeline Pod Temaplates
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
 pipeline {
-  agent none
+  agent { label 'nodejs-app' }
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
-      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {
