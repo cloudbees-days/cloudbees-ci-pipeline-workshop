@@ -8,7 +8,7 @@ We must exit the Blue Ocean UI to the Jenkins classic UI to complete the steps i
 
 1. Click the ***Go to classic*** icon at the top of common section of Blue Ocean’s navigation bar. <p><img src="img/intro/go_to_classic.png" width=850/>
 
-Now, let's add your GitHub personal access token to the Jenkins' Credentials manager to be used for both GitHub webhook management and the *Multibranch Pipeline* project we will create:
+Now, we will create two Jenkins Credentials using you GitHub personal access token to be used for  GitHub webhook management and for the *Multibranch Pipeline* project we will create:
 
 1. Navigate to the top-level of your Team Master - this should be one level-up from where you exit the Blue Ocean UI. You should see a **Manage Jenkins** link in the left navigation menu.
 2. Click on the **Credentials** link in the left navigation menu. <p><img src="img/intro/credentials_breadcrumbs_left_nav2.png" width=850/>
