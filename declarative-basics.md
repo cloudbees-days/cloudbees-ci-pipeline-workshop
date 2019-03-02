@@ -28,7 +28,7 @@ Now we need to add another credential for the Jenkins GitHub global configuratio
 3. Fill out the form (**Secret text**)
   - **Secret**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
   - **ID**: Create an ID for your credentials (something like **github-{username}-secret** - it must be different than the ID used for the **Username with password** credential you created above)
-  - **Description**: Can be left blank if you want <p><img src="img/intro/credential_secret_save.png" width=850/>)
+  - **Description**: Can be left blank if you want <p><img src="img/intro/credential_secret_save.png" width=800/>)
 4. Click on **OK**
 
 ## Enable Webhook Management for GitHub
@@ -58,7 +58,7 @@ In order to complete the following exercise you should have [forked the followin
 Once that repository is forked:
 
 1. Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs as only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/multibranch_team_folder.png" width=850/> 
-2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master <p><img src="img/intro/multibranch_new_item.png" width=850/> 
+2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master <p><img src="img/intro/multibranch_new_item.png" width=800/> 
 3. Enter **helloworld-nodejs** as the **Item Name** 
 4. Select **Multibranch Pipeline** and click **OK**<p><img src="img/intro/multibranch_item_select.png" width=850/>
 5. Under **Branch Sources** click on **Add source** and select **GitHub** <p><img src="img/intro/multibranch_branch_source.png" width=850/>
