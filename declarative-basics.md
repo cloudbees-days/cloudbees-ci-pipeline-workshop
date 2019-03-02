@@ -167,7 +167,7 @@ We will use the Kubernetes plugin [Pipeline `container` block](https://jenkins.i
   agent { label 'nodejs-app' }
 ```
 4. Commit that change and navigate to the **Activity** view of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The build logs should be almost the same as before - we are still using the default `jnlp` container. <p><img src="img/intro/k8s_agent_run_from_bo.png" width=800/> <p>
-5. Let's change that by replacing the **Say Hello** `stage` with the following **Test** `stage` so the steps run in the **nodejs** `container` and the entire pipeline looks like the following:
+5. Let's change that by replacing the **Say Hello** `stage` with the following **Test** `stage` so the steps run in the **nodejs** `container`. Edit the `Jenkinsfile` file in your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
 
 ```groovy
 pipeline {
@@ -199,9 +199,9 @@ pipeline {
 
 ## Conditional Execution with `when`
 
-In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld-nodejs** repository using the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when). We will accomplish this by adding a branch specific `stage` to the `Jenkinsfile` in your forked **helloworld-nodejs** repository.
+In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld-nodejs** repository with conditional execution using the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when). We will accomplish this by adding a branch specific `stage` to the `Jenkinsfile` in your forked **helloworld-nodejs** repository.
 
-1. Navigate to and open the GitHub editor for the `Jenkinsfile` file in your forked **helloworld-nodejs** repository
+1. Navigate to and open the GitHub editor for the `Jenkinsfile` file in **development** branch of your forked **helloworld-nodejs** repository
 2. Insert the following stage after the existing **Test** stage, commit the change and note the `beforeAgent true` option - this setting will result in the `when` condition being evaluated before acquiring an `agent` for the `stage` so the entire `pipeline` matches the following:
 
 ```
