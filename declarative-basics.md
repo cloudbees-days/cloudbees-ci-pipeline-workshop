@@ -13,9 +13,9 @@ Now, we will create two Jenkins Credentials using you GitHub personal access tok
 1. Navigate to the top-level of your Team Master - this should be one level-up from where you exit the Blue Ocean UI. You should see a **Manage Jenkins** link in the left navigation menu.
 2. Click on the **Credentials** link in the left navigation menu. <p><img src="img/intro/credentials_breadcrumbs_left_nav2.png" width=850/>
 3. Click on the **github.com** link under **Stores scoped to Jenkins** <p><img src="img/intro/credential_scope_github.png" width=850/>
-4. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_link2.png" width=850/>
+4. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_link2.png" width=850/> 
 5. Fill out the form (**Username with password**)
-  - **Username**: The GitHub user name
+  - **Username**: Your GitHub user name
   - **Password**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
   - **ID**: Create an ID for your credentials (something like **yourorg-github-token**)
   - **Description**: Can be left blank if you want <p><img src="img/intro/credential_github_token_save2.png" width=850/>
