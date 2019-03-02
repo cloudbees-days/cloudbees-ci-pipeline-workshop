@@ -43,12 +43,12 @@ In this exercise we will add another Docker **container** for executing tests. W
       agent {
         kubernetes {
           label 'nodejs-app-inline'
-          file 'nodejs-pod.yaml
+          yamlFile 'nodejs-pod.yaml
         }
       }
 ```
 3. The [Kubernetes plugin allows you to use standard Kubernetes Pod yaml configuration](https://github.com/jenkinsci/kubernetes-plugin#using-yaml-to-define-pod-templates) to define Pod Templates directly in your Pipeline script.
-4. Note the `file` parameter. The Jenkins Kubernetes Plugin allows you to define Pod Templates using the Kuberenetes specificaiton for the yaml representation of a Pod. The `file` parameter value is a relative path to a yaml file representing the Pod spec you want to use as an agent Pod Template. So we must create the `nodejs-pod.yaml` file in the **master** branch of your forked **helloworld-nodejs** repository. At the top-level of your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. 
+4. Note the `yamlFile` parameter. The Jenkins Kubernetes Plugin allows you to define Pod Templates using the Kuberenetes specificaiton for the yaml representation of a Pod. The `yamlFile` parameter value is a relative path to a yaml file representing the Pod spec you want to use as an agent Pod Template. So we must create the `nodejs-pod.yaml` file in the **master** branch of your forked **helloworld-nodejs** repository. At the top-level of your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. 
 5. Name the file `nodejs-pod.yaml` and add the following content:
 ```
 kind: Pod
