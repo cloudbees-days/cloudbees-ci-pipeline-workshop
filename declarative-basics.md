@@ -67,7 +67,7 @@ Once that repository is forked:
 8. Select the **helloworld-nodejs** repository from your GitHub Organization (it should be the only repository in the Organization).
 9. Click on **Save** <p><img src="img/intro/multibranch_save.png" width=850/>
 10. After the scan is complete, click on the bread-crumb link to go back to your **Multibranch Piepline** Jenkins project folder
-11. When the scan is complete your **Multibranch Piepline** Jenkins project should be **empty**!<p><img src="img/intro/mulitbranch_empty.png" width=850/>
+11. When the scan is complete your **Multibranch Piepline** Jenkins project should have one Pipeline job for the master branch and it should have failed <p><img src="img/intro/mulitbranch_failed.png" width=850/>
 12. However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub repository **Settings**. <p><img src="img/intro/multibranch_repo_webhook.png" width=850/>
 13. The reason why the scan did not find any branches is because there is no branch in your repository with a `Jenkinsfile` in it, so let's fix that. In your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/multibranch_create_file.png" width=850/>
 14. Name the file `Jenkinsfile` and add the following content:
