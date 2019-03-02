@@ -25,7 +25,7 @@ Now we need to add another credential for the Jenkins GitHub global configuratio
 
 1. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_secret_text.png" width=850/>
 2. Select **Secret text** from the Credential **Kind** drop down <p><img src="img/intro/credential_select_secret_text.png" width=850/>
-3. [Enter your GitHub personal access token as the value for the **Secret**, pro](Fill out the form (**Username with password**)
+3. Fill out the form (**Secret text**)
   - **Secret**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
   - **ID**: Create an ID for your credentials (something like **github-{username}-secret** - it must be different than the ID used for the **Username with password** credential you created above)
   - **Description**: Can be left blank if you want <p><img src="img/intro/credential_secret_save.png" width=850/>)
