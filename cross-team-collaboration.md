@@ -1,4 +1,4 @@
-# Pipeline Pod Temaplates and Cross Team Collaboration
+# Inline Pipeline Pod Temaplates and Cross Team Collaboration
 
 In this exercise we will explore a more advanced usage of the Kubernetes plugin by defining a Pod Template inline in our Pipeline Jenkinsfile and will demonstrate [CloudBee's Core Cross Team Collaboration feature](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/).
 
@@ -66,9 +66,9 @@ The Cross Team Collaboration feature has a configurable router for routing event
 
 5. Now I will run the **hello-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
+After you have completed the above exercises, you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
 
-You may proceed to the next set of exercises - **[Pipeline Templates](./catalog-templates.md)** - when your instructor tells you.
+Please check out the [CloudBees Core for K8s CD/Jenkins X Workshop](https://github.com/cloudbees-days/jenkins-x-workshop) and the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
 
 ### Finished Jenkinsfile for *Pipeline Pod Temaplates and Cross Team Collaboration*
 ```

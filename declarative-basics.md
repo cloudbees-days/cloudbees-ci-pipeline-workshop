@@ -237,7 +237,7 @@ pipeline {
 
 Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
 
-You may proceed to the next set of exercises - **[Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)** - when your instructor tells you.
+You may proceed to the next set of exercises - **[Inline Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)** - when your instructor tells you.
 
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
