@@ -76,8 +76,8 @@ pipeline {
 
 }
 ```
-15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request.**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
-16. Navigatd back to your new Multibranch project in Jenkins and refresh the page. You should have a new failed job based on the branch you just added <p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
+15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
+16. Navigate back to your new Multibranch project in Jenkins and refresh the page. You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`<p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
 
