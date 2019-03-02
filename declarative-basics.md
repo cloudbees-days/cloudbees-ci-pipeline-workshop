@@ -21,7 +21,7 @@ Now, we will create two Jenkins Credentials using you GitHub personal access tok
   - **Description**: Can be left blank if you want <p><img src="img/intro/credential_github_token_save2.png" width=850/>
 6. Click on **OK**
 
-Now we need to add another credential for the Jenkins GitHub global configuration in order for Jenkins to automatically create webhooks for us when we add and GitHub repositories to a Jenkins job as we will do when we create a Multibranch Pipeline project in the next exercise. The *GitHub Plugin Configuration* global configuration requires the **Secret text** credential type as opposed to **Username with password**.
+Now we need to add another credential for the Jenkins GitHub global configuration in order for Jenkins to automatically create webhooks for us when we add any GitHub repository configuration to a Jenkins job - as we will do when we create a Multibranch Pipeline project. The *GitHub Plugin Configuration* global configuration requires the **Secret text** credential type as opposed to **Username with password**.
 
 1. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_secret_text.png" width=850/>
 2. Select **Secret text** from the Credential **Kind** drop down <p><img src="img/intro/credential_select_secret_text.png" width=850/>
