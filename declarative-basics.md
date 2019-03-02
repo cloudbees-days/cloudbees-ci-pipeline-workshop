@@ -1,6 +1,6 @@
 # Introduction to Pipelines with CloudBees Core
 
-In this first exercise we will create a Multibranch Pipeline project, get an overview of the basic fundamentals of the Declarative Pipeline syntax, get an introduction to Kubernetes based agents, learn how to add conditional logic to a Declarative Pipeline and a global option to the Pipeline to skip the default checkout.
+In this first set exercises we will create a Multibranch Pipeline project, get an overview of the basic fundamentals of the Declarative Pipeline syntax, get an introduction to Kubernetes based agents, learn how to add conditional logic to a Declarative Pipeline and a global option to the Pipeline to skip the default checkout.
 
 ## Add GitHub Credentials to Your Team Master
 
