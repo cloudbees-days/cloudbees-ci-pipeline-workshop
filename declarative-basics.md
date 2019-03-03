@@ -53,7 +53,7 @@ In this exercise we are going to create a special type of Jenkins Pipeline proje
 
 In order to complete the following exercise you should have [forked the following repository](./Setup.md#fork-the-workshop-repositories) into the Github Organization you created in **[Setup - Create a GitHub Organization](./Setup.md#create-a-github-organization)**:
 
-* https://github.com/cloudbees-cd-acceleration-workshop/helloworld-nodejs  
+* https://github.com/cloudbees-days/helloworld-nodejs  
 
 
 Once that repository is forked:
