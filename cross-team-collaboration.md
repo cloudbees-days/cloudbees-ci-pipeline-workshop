@@ -98,9 +98,9 @@ The Cross Team Collaboration feature has a configurable router for routing event
 
 4. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. 
 
->**NOTE:**After first adding a new `trigger` you must run the job at least once so that the `trigger` is saved to the Jenkins job configuration (similar to what was necessary for the `buildDiscarder` and `preserveStashes` `options` earlier). <p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
+>**NOTE:**After first adding a new `trigger` you must run the job at least once so that the `trigger` is saved to the Jenkins job configuration (similar to what was necessary for the `buildDiscarder` `option` earlier). <p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
 
-Now I will set up a Multinbranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository. The **helloworld-api** repository contains `Jenksfile` that publishes an event. That event will be published **across all Team Masters in our Workshop cluster** via the CloudBees Operations Center event router causing everyones' **helloworld-nodejs** Pipelines to be triggered. 
+Now I will set up a Multinbranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository. The **helloworld-api** repository contains `Jenksfile` that publishes the **hello-api-deploy-event** [simple event](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/#cross-team-event-types). That event will be published **across all Team Masters in our Workshop cluster** via the CloudBees Operations Center event router causing everyones' **helloworld-nodejs** Pipelines to be triggered. 
 
 Now I will run the **helloworld-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
 
