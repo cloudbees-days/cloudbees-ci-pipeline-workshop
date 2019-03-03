@@ -227,7 +227,7 @@ pipeline {
       }
     }
 ```
-
+>NOTE: The `checkout scm` step is outside of the `container` block as there is no guarantee that the `nodejs` `container` has **git** installed.
 3. **Commit Changes** and then navigate to the **development** branch of your **helloworld-nodejs** job in the classic UI on your **Team Master** and once the job has run at least once, the job configuation will be updated to reflect what was added to the Pipeline script. <p><img src="img/intro/options_build_discard.png" width=850/>
 
 > **NOTE:** A Pipeline job must run in Jenkins before any type of Pipeline directive that modifies the job configuration can take effect because there is no way for the Jenkins Master to know about it until it runs on the Jenkins Master. Also, note that for Multibranch Pipeline projects - the only way to modify much of the configuration of the managed branch specific Pipeline jobs is by doing it in the Pipeline Jenkinsfile/script as those jobs are not directly configurable from the Jenkins UI.
