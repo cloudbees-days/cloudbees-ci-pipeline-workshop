@@ -29,14 +29,14 @@ Up to this point we have had only one global `agent` defined and it is being use
       }
     }
 ```
-5. Commit the changesand navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/cross-team/stage_agent_master_fail.png" width=800/>
+5. Commit the changes and navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/cross-team/stage_agent_master_fail.png" width=800/>
 6. Open the GitHub editor for the `Jenkinsfile` file in the **master** branch of your forked helloworld-nodejs repository
 7. Remove the `sh 'java -version'` step from the ***Build and Push Image*** `stage` and commit the changes to the **master** branch.
 8. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
 ## Kubernetes Pod Templates Defined in Pipeline Script
 
-In this exercise we will add another Docker **container** for executing tests. We also want to use a different vesion of the **node** Docker image than the one provided by the CJOC *Kubernetes Shared Cloud* which is `node:8.12.0-alpine`. So far we have been using the **nodejs-app** [Kubernetes *Pod Template* defined for us on **CloudBees Jenkins Operations Center (CJOC)**](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_globally_editing_pod_templates_in_operations_center). In order to be able to control what `containers` and what Docker `image` version we use in our Pipeline we will update the **Jenkinsfile** Pipeline script with an [*inline* Kubernetes Pod Template definition](https://github.com/jenkinsci/kubernetes-plugin#declarative-pipeline).
+In this exercise we will add another Docker **container** for executing tests. We also want to use a different vesion of the **node** Docker image than the one provided by the CJOC *Kubernetes Shared Cloud* which is `node:8.12.0-alpine`. So far we have been using the **nodejs-app** [Kubernetes *Pod Template* defined for us at our Team Master level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#kubernete-agents). In order to be able to control what `containers` and what Docker `image` version we use in our Pipeline we will update the **Jenkinsfile** Pipeline script with an [*inline* Kubernetes Pod Template definition](https://github.com/jenkinsci/kubernetes-plugin#declarative-pipeline).
 
 1. Open the GitHub editor for the **Jenkinsfile** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository.
 2. Replace the `agent` section of the **Test** `stage` with the following:
