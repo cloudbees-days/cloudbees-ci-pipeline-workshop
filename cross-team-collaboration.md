@@ -86,7 +86,7 @@ The [Cross Team Collaboration feature](https://go.cloudbees.com/docs/cloudbees-c
 
 The Cross Team Collaboration feature has a configurable router for routing events and it needs to be configured on your Team Master before you will be able to receive the event published by another Team Master. Once again, CasC was used to pre-configure this for everyone, but you can still check it by going to the top-level of your Team Master in the classic UI, clicking on **Manage Jenkins** and then clicking on **Configure Notification** - you should see the following configured: <p><img src="img/cross-team/cross_team_config.png" width=800/>
 
-1. Now our pipeline must must be updated to listen for a **hello-api-deploy-event** event. We do that by adding a `trigger` to your **Jenkinsfile** Pipeline script.
+1. Now our pipeline must must be updated to listen for a **hello-api-deploy-event** event. We will do that by adding a `trigger` to your **Jenkinsfile** Pipeline script.
 2. Open the GitHub editor for the **Jenkinsfile** file in the **master** branch of your forked **helloworld-nodejs** repository.
 3. Add the following `trigger` block just above the top-level `stages` block:
 
@@ -98,19 +98,52 @@ The Cross Team Collaboration feature has a configurable router for routing event
 
 4. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. 
 
->**NOTE:**After first adding a new `trigger` you must run the job at least once so that the `trigger` is saved to the Jenkins job configuration (similar to what was necessary for the `buildDiscarder` and `preserveStashes` `options` earlier). 
-
-<p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
-
-5. Now I will run the **hello-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
+>**NOTE:**After first adding a new `trigger` you must run the job at least once so that the `trigger` is saved to the Jenkins job configuration (similar to what was necessary for the `buildDiscarder` and `preserveStashes` `options` earlier). <p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
 
 Now I will set up a Multinbranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository. The **helloworld-api** repository contains `Jenksfile` that publishes an event. That event will be published **across all Team Masters in our Workshop cluster** via the CloudBees Operations Center event router causing everyones' **helloworld-nodejs** Pipelines to be triggered. 
 
-After you have completed the above exercises, you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
+Now I will run the **helloworld-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
+
+After you have completed the above exercises, you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below](https://github.com/cloudbees-days/cloudbees-core-workshop/blob/master/cross-team-collaboration.md#finished-jenkinsfile-for-pipeline-pod-temaplates-and-cross-team-collaboration).
 
 Please check out the [CloudBees Core for K8s CD/Jenkins X Workshop](https://github.com/cloudbees-days/jenkins-x-workshop) and the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
 
 ### Finished Jenkinsfile for *Pipeline Pod Temaplates and Cross Team Collaboration*
 ```
-
+pipeline {
+  agent none
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+  }
+  triggers {
+    eventTrigger simpleMatch('hello-api-deploy-event')
+  }
+  stages {
+    stage('Test') {
+      agent {
+        kubernetes {
+          label 'nodejs-app-inline'
+          yamlFile 'nodejs-pod.yaml'
+        }
+      }
+      steps {
+        checkout scm
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
+    stage('Build and Push Image') {
+      when {
+        beforeAgent true
+        branch 'master'
+      }
+      steps {
+        echo "TODO - build and push image"
+      }
+    }
+  }
+}
 ```
