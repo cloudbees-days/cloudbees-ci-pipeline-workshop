@@ -78,7 +78,7 @@ pipeline {
 }
 ```
 15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
-16. Navigate back to your new Multibranch project in Jenkins and refresh the page. You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`<p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
+16. Navigate back to your new Multibranch project on your Team Master and refresh the page. You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`<p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
 
@@ -153,7 +153,7 @@ openjdk version "1.8.0_171"
 
 ## Kubernetes Agents with CloudBees Core
 
-In this exercise we will get an introduction to the [Jenkins Kubernetes plugin](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md) for running dynamic and ephemeral agents in a Kubernetes cluster - leveraging the scaling abilities of Kubernetes to schedule build agents.
+In this exercise we will get an introduction to the [Jenkins Kubernetes plugin](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md) for running dynamic and ephemeral agents in a Kubernetes cluster - [leveraging the scaling abilities of Kubernetes to schedule build agents](https://kurtmadel.com/posts/cicd-with-kubernetes/autoscaling-jenkins-agents-with-kubernetes/).
 
 CloudBees Core has OOTB support for Kubernetes build agents and allow Kubernetes agents templates - called Pod Templates - to be defined at either [the Operations Center level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_globally_editing_pod_templates_in_operations_center) or at [the Team Master level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#kubernete-agents). The Kubernetes based agent is contained in a pod, where a pod is a group of one or more containers sharing a common storage system and network. A pod is the smallest deployable unit of computing that Kubernetes can create and manage (you can read more about pods in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod/)).
 
