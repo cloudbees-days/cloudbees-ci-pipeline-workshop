@@ -49,8 +49,8 @@ In this exercise we will add another Docker **container** for executing tests. W
         }
       }
 ```
-1. The [Jenkins Kubernetes plugin allows you to use standard Kubernetes Pod yaml configuration](https://github.com/jenkinsci/kubernetes-plugin#using-yaml-to-define-pod-templates) to define Pod Templates directly in your Pipeline script. We will do just that in a new `nodejs-pod.yaml` file specified by the `yamlFile` parameter above. The `yamlFile` parameter value is a repository relative path to a yaml file representing the Pod spec you want to use as an agent Pod Template. At the top-level of the **master** branch of your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. 
-2. Name the file `nodejs-pod.yaml` and add the following content:
+3. The [Jenkins Kubernetes plugin allows you to use standard Kubernetes Pod yaml configuration](https://github.com/jenkinsci/kubernetes-plugin#using-yaml-to-define-pod-templates) to define Pod Templates directly in your Pipeline script. We will do just that in a new `nodejs-pod.yaml` file specified by the `yamlFile` parameter above. The `yamlFile` parameter value is a repository relative path to a yaml file representing the Pod spec you want to use as an agent Pod Template. At the top-level of the **master** branch of your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. 
+4. Name the file `nodejs-pod.yaml` and add the following content:
 ```
 kind: Pod
 metadata:
@@ -68,12 +68,12 @@ spec:
     - cat
     tty: true
 ```
-6. At the bottom of the screen enter a commit message, leave ***Commit directly to the master branch** selected and click the **Commit new file** button<p>
-7. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will queue indefinitely, but why? 
-8. The answer is provided by the [CloudBees Kube Agent Management plugin](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#monitoring-kubernetes-agents). Exit to the classic UI on your Team Master and navigate up to the **helloworld-nodejs** Multibranch folder. On the bottom left of of the screen there is a dedicated widget that provides information about the ongoing provisioning of Kubernetes agents. It also highlights failures, allowing you to determine the root cause of a provisioning failure. Click on the link for the failed or pending pod template. <p><img src="img/cross-team/pipeline_pod_template_failure.png" width=800/>
-9. You will see that the **nodejs** container has an error - it looks like there is not a **node** Docker image available with that tag. If you go to [Docker Hub and look at the tags availalbe for the **node** image](https://hub.docker.com/r/library/node/tags/) you will see there is a **10.10.0-alpine** but not a **10.10.1-alpine** tag for the **node** image: <p><img src="img/cross-team/pipeline_pod_template_containers_error.png" width=800/> 
-10. Abort the current run (or it will keep going forever) and open the GitHub editor for the **nodejs-pod.yaml** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository. Update the `image` for the **nodejs** `container` to be `node:10.10.0-alpine`.
-11. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will run successfully. Also, note the output of the `sh 'node --version'` step - it is `v10.10.0` instead of `v8.12.0`: <p><img src="img/cross-team/pipeline_pod_template_node_version.png" width=850/>
+5. At the bottom of the screen enter a commit message, leave ***Commit directly to the master branch** selected and click the **Commit new file** button<p>
+6. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will queue indefinitely, but why? 
+7. The answer is provided by the [CloudBees Kube Agent Management plugin](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#monitoring-kubernetes-agents). Exit to the classic UI on your Team Master and navigate up to the **helloworld-nodejs** Multibranch folder. On the bottom left of of the screen there is a dedicated widget that provides information about the ongoing provisioning of Kubernetes agents. It also highlights failures, allowing you to determine the root cause of a provisioning failure. Click on the link for the failed or pending pod template. <p><img src="img/cross-team/pipeline_pod_template_failure.png" width=800/>
+8. You will see that the **nodejs** container has an error - it looks like there is not a **node** Docker image available with that tag. If you go to [Docker Hub and look at the tags availalbe for the **node** image](https://hub.docker.com/r/library/node/tags/) you will see there is a **10.10.0-alpine** but not a **10.10.1-alpine** tag for the **node** image: <p><img src="img/cross-team/pipeline_pod_template_containers_error.png" width=800/> 
+9. Abort the current run (or it will keep going forever) and open the GitHub editor for the **nodejs-pod.yaml** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository. Update the `image` for the **nodejs** `container` to be `node:10.10.0-alpine`.
+10. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will run successfully. Also, note the output of the `sh 'node --version'` step - it is `v10.10.0` instead of `v8.12.0`: <p><img src="img/cross-team/pipeline_pod_template_node_version.png" width=850/>
 
 ## Cross-Team Master Events
 
