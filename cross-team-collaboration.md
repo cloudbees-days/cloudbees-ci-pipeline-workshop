@@ -82,19 +82,17 @@ spec:
 
 ## Cross-Team Master Events
 
-We already have a job on the **beedemo-ops** Team Master that will publish an event. <p><img src="img/cross-team/cross_team_pub_event_pipeline.png" width=850/>
+The [Cross Team Collaboration feature](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/) is designed to greatly improve team collaboration by connecting team Pipelines to deliver software faster. It essentially allows a Pipeline to create a notification event which will be consumed by other Pipelines waiting on it. It consists of a [**Publishing Event**](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/#cross-team-event-publishers) and a [**Trigger Condition**](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/#cross-team-event-triggers).
 
-That event will be published **across Team Masters** via the CloudBees Operations Center event router. 
+The Cross Team Collaboration feature has a configurable router for routing events and it needs to be configured on your Team Master before you will be able to receive the event published by another Team Master. Once again, CasC was used to pre-configure this for everyone, but you can still check it by going to the top-level of your Team Master in the classic UI, clicking on **Manage Jenkins** and then clicking on **Configure Notification** - you should see the following configured: <p><img src="img/cross-team/cross_team_config.png" width=800/>
 
-The Cross Team Collaboration feature has a configurable router for routing events and you will need to configure the Notification router on your Team Master before you will be able to receive the event published by the **beedemo-ops** Team Master.
-
-1. Before the **hello-api** Pipeline's `hello-api-push-event` can trigger our **helloworld-nodejs** Pipeline job we must listen for the event. We do that by adding a `trigger` to your **Jenkinsfile** Pipeline script.
+1. Now our pipeline must must be updated to listen for a **hello-api-deploy-event** event. We do that by adding a `trigger` to your **Jenkinsfile** Pipeline script.
 2. Open the GitHub editor for the **Jenkinsfile** file in the **master** branch of your forked **helloworld-nodejs** repository.
 3. Add the following `trigger` block just above the top-level `stages` block:
 
 ```groovy
   triggers {
-    eventTrigger simpleMatch('hello-api-push-event')
+    eventTrigger simpleMatch('hello-api-deploy-event')
   }
 ```
 
@@ -105,6 +103,8 @@ The Cross Team Collaboration feature has a configurable router for routing event
 <p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
 
 5. Now I will run the **hello-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
+
+Now I will set up a Multinbranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository. The **helloworld-api** repository contains `Jenksfile` that publishes an event. That event will be published **across all Team Masters in our Workshop cluster** via the CloudBees Operations Center event router causing everyones' **helloworld-nodejs** Pipelines to be triggered. 
 
 After you have completed the above exercises, you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
 
