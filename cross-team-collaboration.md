@@ -61,7 +61,7 @@ spec:
 ```
 
 3. Now we need to update our Pipeline to use that file. Open the GitHub editor for the **Jenkinsfile** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository.
-4. Replace the `agent` section of the **Test** `stage` with the following - note that the valule of the `yamlFile` parameters is the name of the file we created:
+4. Replace the `agent` section of the **Test** `stage` with the following - note that the valule of the `yamlFile` parameter is the name of the file we created:
 
 ```
       agent {
