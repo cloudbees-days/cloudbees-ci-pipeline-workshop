@@ -36,7 +36,7 @@ Once that repository is forked:
 2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master  
 3. Enter your GitHub Organization name as the **Item Name** 
 4. Select **GitHub Organization**
-5. Click **Ok** <p><img src="img/intro/org_folder_new_item.png" width=850/>
+5. Click **Ok** <p><img src="img/intro/org_folder_item.png" width=850/>
 6. Select the credentials you created above from the **Credentials** drop down 
 7. Make sure that the **Owner** field matches the name of your GitHub Organization name. 
 8. Click on **Save** <p><img src="img/intro/org_folder_save.png" width=850/>
