@@ -16,7 +16,7 @@ Now, we will create two Jenkins Credentials using you GitHub personal access tok
 4. Click on **Add Credentials** in the left menu <p><img src="img/intro/credential_add_link2.png" width=850/> 
 5. Fill out the form (**Username with password**)
   - **Username**: Your GitHub user name
-  - **Password**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:org_hook)
+  - **Password**: Your GitHub personal access token [created in setup](../Setup.md#create-a-github-personal-access-token) OR [here is the GitHub link to automatically select the required **Personal access token settings** if you haven't alreaedy done it](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:org_hook,delete_repo)
   - **ID**: Create an ID for your credentials (something like **github-[Your GitHub Usename]**)
   - **Description**: Can be left blank if you want <p><img src="img/intro/credential_github_token_save2.png" width=850/>
 6. Click on **OK**
@@ -32,27 +32,26 @@ In order to complete the following exercise you should have [forked the followin
 
 Once that repository is forked:
 
-1. **IMPORTANT** Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs as only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/multibranch_team_folder.png" width=850/> 
-2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master <p><img src="img/intro/multibranch_new_item.png" width=800/> 
-3. Enter **helloworld-nodejs** as the **Item Name** 
-4. Select **Multibranch Pipeline** and click **OK**<p><img src="img/intro/multibranch_item_select.png" width=850/>
-5. Under **Branch Sources** click on **Add source** and select **GitHub** <p><img src="img/intro/multibranch_branch_source.png" width=850/>
-6. Select the **Username and password** credentials you created above from the **Credentials** drop down 
-7. Make sure that the **Owner** field matches the name of your GitHub Organization name.
-8. Select the **helloworld-nodejs** repository from your GitHub Organization (it should be the only repository in the Organization).
-9. Click on **Save** <p><img src="img/intro/multibranch_save.png" width=850/>
-10. After the scan is complete, click on the bread-crumb link to go back to your **Multibranch Piepline** Jenkins project folder
-11. When the scan is complete your **Multibranch Piepline** Jenkins project should be **empty**!<p><img src="img/intro/mulitbranch_empty.png" width=850/>
-12. However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub repository **Settings**. <p><img src="img/intro/multibranch_repo_webhook.png" width=850/>
-13. The reason why the scan did not find any branches is because there is no branch in your repository with a `Jenkinsfile` in it, so let's fix that. In your forked copy of the **helloworld-nodejs** repository click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/multibranch_create_file.png" width=850/>
-14. Name the file `Jenkinsfile` and add the following content:
+1. **IMPORTANT** Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs, because only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/org_folder_team_folder.png" width=850/> 
+2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master  
+3. Enter your GitHub Organization name as the **Item Name** 
+4. Select **GitHub Organization**
+5. Click **Ok** <p><img src="img/intro/org_folder_new_item.png" width=850/>
+6. Select the credentials you created above from the **Credentials** drop down 
+7. Make sure that the **Owner** field matches the name of your GitHub Organization name. 
+8. Click on **Save** <p><img src="img/intro/org_folder_save.png" width=850/>
+9.  After the scan is complete, click on the bread-crumb link to go back to your **GitHub Organization** Jenkins Pipeline project folder
+10.  When the scan is complete your **GitHub Organization** Jenkins Pipeline project should be **empty**!<p><img src="img/intro/org_folder_empty.png" width=850/>
+11.  However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub Organization **Settings**. <p><img src="img/intro/org_folder_webhook.png" width=850/>
+12.  The reason why the scan did not find any repositorires is because there were no branches in any repository with a `Jenkinsfile` in it, so let's fix that. Navigate to your forked copy of the **helloworld-nodejs** repository and click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/org_folder_create_file.png" width=850/>
+13.  Name the file `Jenkinsfile` and add the following content:
 ```
 pipeline {
 
 }
 ```
-15. At the bottom of the screen enter a commit message, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository.  <p><img src="img/intro/multibranch_jenkinsfile_commit.png" width=850/>
-16. Navigate back to your new Multibranch project on your Team Master and refresh the page. You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`<p><img src="img/intro/multibranch_new_job_failed.png" width=850/>
+14.  At the bottom of the screen enter a commit message ***'initial Jenkinsfile'***, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button to save it your repository. **IMPORTANT Do Not Create a Pull Request** <p><img src="img/intro/org_folder_jenkinsfile_commit.png" width=850/> 
+15.  Navigate back to your new **GitHub Organization** Jenkins Pipeline project folder on your Team Master,click on the **Scan Organization Now** link in the left menu and then refresh your browser. <p><img src="img/intro/org_folder_scan.png" width=850/>You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`<p><img src="img/intro/org_folder_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
 
