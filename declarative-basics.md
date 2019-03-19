@@ -50,7 +50,7 @@ pipeline {
 
 }
 ```
-14. At the bottom of the screen enter a commit message ***initial Jenkinsfile***, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button. **IMPORTANT Do Not Create a Pull Request** <p><img src="img/intro/org_folder_jenkinsfile_commit.png" width=850/> 
+14. At the bottom of the screen enter a commit message ***initial Jenkinsfile***, select the **Create a new branch for this commit and start a pull request**, name the branch **development** and click the **Propose new file** button. **IMPORTANT Do Not Create a Pull Request on the next screen after saving** <p><img src="img/intro/org_folder_jenkinsfile_commit.png" width=850/> 
 15. Navigate back to your new **GitHub Organization** Jenkins Pipeline project folder on your Team Master,click on the **Scan Organization Now** link in the left menu and then refresh your browser. <p><img src="img/intro/org_folder_scan.png" width=850/>You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`. <p><img src="img/intro/org_folder_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
