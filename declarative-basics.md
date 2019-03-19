@@ -33,7 +33,7 @@ In order to complete the following exercise you should have [forked the followin
 Once that repository is forked:
 
 1. **IMPORTANT** Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs, because only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/org_folder_team_folder.png" width=850/> 
-2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master  
+2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master  <p><img src="img/intro/org_folder_bluesteel_folder.png" width=850/>
 3. Enter your GitHub Organization name as the **Item Name** 
 4. Select **GitHub Organization**
 5. Click **Ok** <p><img src="img/intro/org_folder_item.png" width=850/>
