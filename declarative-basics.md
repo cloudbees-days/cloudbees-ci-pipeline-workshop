@@ -35,23 +35,23 @@ Once that repository is forked:
 1. **IMPORTANT** Navigate back to the top-level of your **Team Master** and click on the folder with the same name as your **Team Master**. This is important if you want to use [Blue Ocean](https://jenkins.io/projects/blueocean/) to visualize the Pipeline runs, because only jobs under this folder will show up in Blue Ocean.<p><img src="img/intro/org_folder_team_folder.png" width=850/> 
 2. Click on **New Item** in the left navigation menu - make sure that you are in the folder with the same name as your team, and not at the root of your Team Master  <p><img src="img/intro/org_folder_bluesteel_folder.png" width=850/>
 3. Enter your GitHub Organization name as the **Item Name** 
-4. Select **GitHub Organization**
+4. Select **GitHub Organization** as the item type
 5. Click **Ok** <p><img src="img/intro/org_folder_item.png" width=850/>
 6. Select the credentials you created above from the **Credentials** drop down 
-7. Make sure that the **Owner** field matches the name of your GitHub Organization name. 
-8. Click on **Save** <p><img src="img/intro/org_folder_save.png" width=850/>
-9.  After the scan is complete, click on the bread-crumb link to go back to your **GitHub Organization** Jenkins Pipeline project folder
-10.  When the scan is complete your **GitHub Organization** Jenkins Pipeline project should be **empty**!<p><img src="img/intro/org_folder_empty.png" width=850/>
-11.  However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking **Webhooks** within your GitHub Organization **Settings**. <p><img src="img/intro/org_folder_webhook.png" width=850/>
-12.  The reason why the scan did not find any repositorires is because there were no branches in any repository with a `Jenkinsfile` in it, so let's fix that. Navigate to your forked copy of the **helloworld-nodejs** repository and click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/org_folder_create_file.png" width=850/>
-13.  Name the file `Jenkinsfile` and add the following content:
+7. Make sure that the **Owner** field matches the name of your GitHub Organization name
+8. Click the **Save** button <p><img src="img/intro/org_folder_save.png" width=850/>
+9. Click on the bread-crumb link to go back to your **GitHub Organization** Jenkins Pipeline project folder
+10. When the scan is complete your **GitHub Organization** Jenkins Pipeline project should be **empty**!<p><img src="img/intro/org_folder_empty.png" width=850/>
+11. However, when the project was created it also should have created a webhook in Github. Verify that the webhook was created in Github by checking the **Webhooks** within your GitHub Organization **Settings**. <p><img src="img/intro/org_folder_webhook.png" width=850/>
+12. The reason why the scan did not find any repositories is because there were no branches in any repository with a `Jenkinsfile` in it, so let's fix that. Navigate to your forked copy of the **helloworld-nodejs** repository and click on the **Create new  file** button towards the top right of the screen. <p><img src="img/intro/org_folder_create_file.png" width=850/>
+13. Name the file `Jenkinsfile` and add the following content:
 ```
 pipeline {
 
 }
 ```
-1.   At the bottom of the screen enter a commit message ***initial Jenkinsfile***, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button. **IMPORTANT Do Not Create a Pull Request** <p><img src="img/intro/org_folder_jenkinsfile_commit.png" width=850/> 
-2.   Navigate back to your new **GitHub Organization** Jenkins Pipeline project folder on your Team Master,click on the **Scan Organization Now** link in the left menu and then refresh your browser. <p><img src="img/intro/org_folder_scan.png" width=850/>You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`. <p><img src="img/intro/org_folder_new_job_failed.png" width=850/>
+14. At the bottom of the screen enter a commit message ***initial Jenkinsfile***, select the **Create a new branch for this commit and start a pull request**, name the branch **devevlopment** and click the **Propose new file** button. **IMPORTANT Do Not Create a Pull Request** <p><img src="img/intro/org_folder_jenkinsfile_commit.png" width=850/> 
+15. Navigate back to your new **GitHub Organization** Jenkins Pipeline project folder on your Team Master,click on the **Scan Organization Now** link in the left menu and then refresh your browser. <p><img src="img/intro/org_folder_scan.png" width=850/>You should have a new failed job based on the **development** branch you just added the `Jenkinsfile`. <p><img src="img/intro/org_folder_new_job_failed.png" width=850/>
 
 ## Basic Declarative Syntax Structure
 
