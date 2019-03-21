@@ -164,9 +164,22 @@ pipeline {
 
 >NOTE: If you waited for your job to complete in Blue Ocean before you navigated to the [Pipeline Runs Details View](https://jenkins.io/doc/book/blueocean/pipeline-run-details/#pipeline-run-details-view) you will discover a nice feature where if a particular step fails, the tab with the failed step will be automatically expanded, showing the console log for the failed step as you can see in the image above.
 
-6. We will fix the error in the **Test** `stage` we added above by replacing the `sh 'java -version'` step with the following step in the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository:
+6. We will fix the error in the **Test** `stage` we added above by replacing the `sh 'java -version'` step with the following step and moving the `sh 'jave -version` step above the `container` block in the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
 ```
-  sh 'node --version'
+pipeline {
+  agent { label 'nodejs-app' }
+  stages {
+    stage('Test') {
+      steps {
+        sh 'java -version'
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
+  }
+}
 ```
 7. Commit the changes and the **helloworld-nodejs** job will run and it will complete successfully with the following output: <p><img src="img/intro/k8s_agent_success.png" width=800/>
 
