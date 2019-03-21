@@ -187,7 +187,7 @@ pipeline {
   }
 ```
 
-2. Next, we need to add an explicit checkout step - `checkout scm` to the **Test** stage, we don't want to do a full checkout in any of the other stages but we do need a checkout in this `stage`:
+1. Next, we need to add an explicit checkout step - `checkout scm` to the **Test** stage, we don't want to do a checkout in any of the other stages but we do need a checkout in this `stage`:
 
 ```
     stage('Test') {

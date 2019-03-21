@@ -37,7 +37,7 @@ Setup a GitHub.com user account that will be used later in this workshop. If you
 ## Create a GitHub Personal Access Token
 The following instructions cover how to create a Github Personal Access Token that you will use within Jenkins to connect Pipelines, Multibranch Pipelines, and Github Organization Projects to your Github repositories.
 
-1. Click on [this link to automatically select the required **Personal access token settings**](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook)
+1. Click on [this link to automatically select the required **Personal access token settings**](https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,admin:repo_hook, admin:org_hook)
 2. Click on **Generate Token**
 3. As the success message says: **Make sure to copy your new personal access token now. You won’t be able to see it again!**  
 
