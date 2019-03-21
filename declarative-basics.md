@@ -74,7 +74,7 @@ WorkflowScript: 1: Missing required section "agent" @ line 1, column 1.
 
 [Declarative Pipelines](https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline) must be enclosed within a `pipeline` block - which we have. But Declarative Pipelines must also contain a top-level `agent` declaration, and must contain exactly one `stages` block at the top level. The `stages` block must have at least one `stage` block but can have an unlimited number of additional `stage` blocks. Each `stage` block must have exactly one `steps` block. 
 
-1. We will use the GitHub file editor to update the `Jenkinsfile` file in your forked **helloworld-nodejs** repository. Navigate to the `Jenkinsfile` file in the **development** branch of your forked repository and then click on the pencil icon in the upper right to edit that file. **IMPORTANT Make sure you are editing the `Jenkinsfile` on your development branc**<p><img src="img/intro/basic_snytax_edit_github.png" width=850/>
+1. We will use the GitHub file editor to update the `Jenkinsfile` file in your forked **helloworld-nodejs** repository. Navigate to the `Jenkinsfile` file in the **development** branch of your forked repository and then click on the pencil icon in the upper right to edit that file. **IMPORTANT Make sure you are editing the `Jenkinsfile` on your development branch**<p><img src="img/intro/basic_snytax_edit_github.png" width=850/>
 2. Replace the contents of that file with the following Declarative Pipeline:
 
 ```groovy
