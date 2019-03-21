@@ -255,6 +255,8 @@ pipeline {
   }
 }
 ```
+> **NOTE:** Most of the Pod Spec is cookie cuttern and the only values we really care about are the `containers` `-name` and `image` - everthing else will typically always be the same.
+
 3. Commit the changes and then navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
 4. Now we will create a [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
 5. Changed the **base repository** to the **master** branch of your forked **helloworld-nodejs** repository (not the **cloudbees-days** repository), add a comment and then click the **Create pull request** button <p><img src="img/intro/conditional_create_pull_request.png" width=800/>
