@@ -6,7 +6,7 @@ In this first set exercises we will [create a GitHub Org Folder Pipeline project
 
 We must exit the Blue Ocean UI to the Jenkins classic UI to complete the steps in this exercise.
 
-1. Click the ***Go to classic*** icon at the top of common section of Blue Ocean’s navigation bar. <p><img src="img/intro/go_to_classic.png" width=850/>
+1. Click the ***Go to classic*** button at the top of common section of Blue Ocean’s navigation bar. <p><img src="img/intro/go_to_classic.png" width=850/>
 
 Now, we will create two Jenkins Credentials using you GitHub personal access token to be used for  GitHub webhook management and for the *Multibranch Pipeline* project we will create:
 
