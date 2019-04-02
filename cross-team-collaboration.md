@@ -107,6 +107,12 @@ After you have completed the above exercises, you can make sure that your **Jenk
 
 Please check out the [CloudBees Core for K8s CD/Jenkins X Workshop](https://github.com/cloudbees-days/jenkins-x-workshop) and the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
 
+## Next Lesson
+
+Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-pipeline-pod-templates-and-cross-team-collaboration).
+
+You may proceed to the next set of exercises - **[Pipeline Catalog Templates](./catalog-templates.md)** - when your instructor tells you.
+
 ### Finished Jenkinsfile for *Pipeline Pod Temaplates and Cross Team Collaboration*
 ```
 pipeline {
