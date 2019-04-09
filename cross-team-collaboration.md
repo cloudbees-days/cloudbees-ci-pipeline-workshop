@@ -1,6 +1,6 @@
 # Stage Specific Agents, Inline Pipeline Pod Temaplates and Cross Team Collaboration
 
-In this exercise we will explore stage specific agents, a more advanced usage of the Kubernetes plugin by defining a Pod Template inline in our Pipeline Jenkinsfile and will demonstrate [CloudBee's Core Cross Team Collaboration feature](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/).
+In this exercise we will explore stage specific agents, a more advanced usage of the Kubernetes plugin by defining a Pod Template inline in our Pipeline Jenkinsfile and will demonstrate [CloudBees Core Cross Team Collaboration feature](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/).
 
 ## Stage Specific Agents and Agent None
 
@@ -113,7 +113,7 @@ Before moving on to the next lesson you can make sure that your **Jenkinsfile** 
 
 You may proceed to the next set of exercises - **[Pipeline Catalog Templates](./catalog-templates.md)** - when your instructor tells you.
 
-### Finished Jenkinsfile for *Pipeline Pod Temaplates and Cross Team Collaboration*
+### Finished Jenkinsfile for *Pipeline Pod Templates and Cross Team Collaboration*
 ```
 pipeline {
   agent none
