@@ -14,7 +14,7 @@ To get started goto the [**Set-up Instructions**](Setup.md).
 **The exercises covered in the workshop are available at the following links:**
 
 * [Introduction to Pipelines with CloudBees Core](./declaragtive-basics.md)
-* [Inline Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)
+* [Inline Pipeline Pod Templates and Cross Team Collaboration](./cross-team-collaboration.md)
 
 
 # Training Prerequisites
