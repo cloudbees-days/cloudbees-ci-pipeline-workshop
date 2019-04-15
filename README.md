@@ -11,13 +11,17 @@ This repository contains instructions and learning materials for the workshop th
 
 To get started goto the [**Set-up Instructions**](Setup.md).
 
-**The exercises covered in the workshop are available at the following links:**
+**The exercises covered in this workshop are available at the following links:**
 
-* [Introduction to Pipelines with CloudBees Core](./declarative-basics.md)
-* [Inline Pipeline Pod Templates and Cross Team Collaboration](./cross-team-collaboration.md)
+* [Introduction to Declarative Pipelines](./declarative-basics.md)
+* [Stage specific agents](./stage-specific-agents.md)
+* [Inline Pipeline Pod Templates](./inline-pipeline-pod-templates.md)
+* [Pipeline with Interactive Input](./input.md)
+* [Pipeline Catalog Templates](./pipeline-catalog-templates.md)
+* [Cross Team Collaboration](./cross-team-collaboration.md)
 
 
-# Training Prerequisites
+# Workshop Prerequisites
 
 In order to follow along with the hands on portion of the workshop students should have the following resources available to them:
 

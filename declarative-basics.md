@@ -1,4 +1,4 @@
-# Introduction to Pipelines with CloudBees Core
+# Introduction to Declarative Pipelines with CloudBees Core
 
 In this first set exercises we will [create a GitHub Org Folder Pipeline project](), get an overview of the [basic fundamentals of the Declarative Pipeline syntax](#basic-declarative-syntax-structure), get an [introduction to Kubernetes based agents](#kubernetes-agents-with-cloudbees-core) and learn how to [add conditional logic to a Declarative Pipeline](#conditional-execution-with-when). But first we have to [add some credentials to our Team Master](#add-github-credentials-to-your-team-master) - a **Username with password** credential for the GitHub Org Folder Pipeline project.
 
