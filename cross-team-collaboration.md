@@ -32,9 +32,7 @@ Please check out the [CloudBees Core for K8s CD/Jenkins X Workshop](https://gith
 
 ## Next Lesson
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-pipeline-pod-templates-and-cross-team-collaboration).
-
-You may proceed to the next set of exercises - **[Pipeline Catalog Templates](./catalog-templates.md)** - when your instructor tells you.
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-pipeline-pod-templates-and-cross-team-collaboration).
 
 ### Finished Jenkinsfile for *Pipeline Pod Templates and Cross Team Collaboration*
 ```
@@ -75,3 +73,5 @@ pipeline {
   }
 }
 ```
+
+You may proceed to the next set of [**exercises**](./README.md#excercises) - when your are you ready with this excercise.

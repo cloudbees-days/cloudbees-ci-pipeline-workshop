@@ -90,9 +90,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
 
 <p><img src="img/input/input_submitter_favorite.png" width=800/>
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
-
-You may proceed to the next set of exercises - **[Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)** - when your instructor tells you.
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
 
 ### Finished Jenkinsfile for *Pipeline Approvals with Interactive Input*
 ```
@@ -142,3 +140,5 @@ pipeline {
   }
 }
 ```
+
+You may proceed to the next set of [**exercises**](./README.md#excercises) - when your are you ready with this excercise.
