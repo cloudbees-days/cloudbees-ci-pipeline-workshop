@@ -28,18 +28,18 @@ In order to follow along with the hands on portion of the workshop students shou
    
 Detailed setup instructions are available at **[Setup](Setup.md)**
 
-# Workshop Excercises
+# Workshop Labs
 
-**The exercises covered in this workshop are available at the following links:**
+**The labs covered in this workshop are available at the following links:**
 
-* [Introduction to Declarative Pipelines](./declarative-basics.md)
-* [Stage specific agents](./stage-specific-agents.md)
-* [Using the `options` directive](./options-directive.md)
-* [Conditional Execution using the `when` directive](./options-directive.md)
-* [Inline Pipeline Pod Templates](./inline-pipeline-pod-templates.md)
-* [Pipeline with Interactive Input](./input.md)
-* [Pipeline Catalog Templates](./pipeline-catalog-templates.md)
-* [Cross Team Collaboration](./cross-team-collaboration.md)
+* Lab 1. [Introduction to Declarative Pipelines](./declarative-basics.md)
+* Lab 2. [Stage specific agents](./stage-specific-agents.md)
+* Lab 3. [Using the `options` directive](./options-directive.md)
+* Lab 4. [Conditional Execution using the `when` directive](./options-directive.md)
+* Lab 5. [Inline Pipeline Pod Templates](./inline-pipeline-pod-templates.md)
+* Lab 6. [Pipeline with Interactive Input](./input.md)
+* Lab 7. [Pipeline Catalog Templates](./pipeline-catalog-templates.md)
+* Lab 8. [Cross Team Collaboration](./cross-team-collaboration.md)
 
 
 # Disclaimer

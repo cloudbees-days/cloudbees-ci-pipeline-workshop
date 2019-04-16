@@ -34,4 +34,4 @@ Up to this point we have had only one global `agent` defined and it is being use
 7. Remove the `sh 'java -version'` step from the ***Build and Push Image*** `stage` and commit the changes to the **master** branch.
 8. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
 
-You may proceed to the next set of [**exercises**](./README.md#excercises) - when your are you ready with this excercise.
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.

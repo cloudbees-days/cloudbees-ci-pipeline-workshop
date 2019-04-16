@@ -62,4 +62,4 @@ The workshop utilizes the **helloworld-nodejs** repository from the [CloudBees D
 You should see the following **Create a new Pipeline** screen for your Team:
 <p><img src="img/setup/setup-success.png" width=600/>
   
-You may proceed to the next set of [**exercises**](./README.md#excercises) - when your are you ready with this excercise.
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.

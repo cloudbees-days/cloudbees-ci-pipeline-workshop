@@ -59,4 +59,4 @@ pipeline {
 
 >**NOTE:** The sh 'java -version' step before the `container('nodejs')` completed successfully this time because it used the default `jnlp` container to execute any steps not in the `container` block.
 
-You may proceed to the next set of [**exercises**](./README.md#excercises) - when your are you ready with this excercise.
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.

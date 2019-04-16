@@ -32,4 +32,4 @@ pipeline {
 
 > **NOTE:** A Pipeline job must run in Jenkins before any type of Pipeline directive that modifies the job configuration can take effect because there is no way for the Jenkins Master to know about it until it runs on the Jenkins Master. Also, note that for Multibranch Pipeline projects - the only way to modify much of the configuration of the managed branch specific Pipeline jobs is by doing it in the Pipeline Jenkinsfile/script as those jobs are not directly configurable from the Jenkins UI.
 
-You may proceed to the next set of [**exercises**](./README.md#Excercises) - when your are you ready with this excercise.
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
