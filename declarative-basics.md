@@ -1,4 +1,4 @@
-# Introduction to Pipelines with CloudBees Core
+# Introduction to Declarative Pipelines with CloudBees Core
 
 In this first set exercises we will [create a GitHub Org Folder Pipeline project](), get an overview of the [basic fundamentals of the Declarative Pipeline syntax](#basic-declarative-syntax-structure), get an [introduction to Kubernetes based agents](#kubernetes-agents-with-cloudbees-core) and learn how to [add conditional logic to a Declarative Pipeline](#conditional-execution-with-when). But first we have to [add some credentials to our Team Master](#add-github-credentials-to-your-team-master) - a **Username with password** credential for the GitHub Org Folder Pipeline project.
 
@@ -125,149 +125,10 @@ openjdk version "1.8.0_171"
   
 > **NOTE:** You may have noticed that your Pipeline GitHub repository is being checked out even though you didn't specify that in your Jenkinsfile. Declarative Pipeline checks out source code by default without the need to explicitly include the `checkout scm` step. Furthermore, this automatic checkout will occur in every `stage` that uses a different agent.
 
-## Kubernetes Agents with CloudBees Core
-
-In this exercise we will get an introduction to the [Jenkins Kubernetes plugin](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md) for running dynamic and ephemeral agents in a Kubernetes cluster - [leveraging the scaling abilities of Kubernetes to schedule build agents](https://kurtmadel.com/posts/cicd-with-kubernetes/autoscaling-jenkins-agents-with-kubernetes/).
-
-CloudBees Core has OOTB support for Kubernetes build agents and allow Kubernetes agent templates - called Pod Templates - to be defined at either [the Operations Center level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_globally_editing_pod_templates_in_operations_center) or at [the Team Master level](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_editing_pod_templates_per_team_using_masters). The Kubernetes based agent is contained in a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/), where a pod is a group of one or more containers sharing a common storage system and network. A pod is the smallest deployable unit of computing that Kubernetes can create and manage (you can read more about pods in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod/)).
-
->NOTE: One of the **containers** in a **Pod Template** must host the actual Jenkins build agent that communicates with the Jenkins Master (the `slave.jar` file that is used for communication between the CloudBees Team Master and the agent). By convention, this container always exists (and is automatically added to any Pod Templates that do not define a **Container Template** with the name ***jnlp*** ). Again, this special container has the ***Name*** `jnlp` and default execution of the Pipeline always happens in this `jnlp` container (as it did when we used `agent any` above) - unless you declare otherwise with a special Pipeline step provided by the Kuberentes plugin - [the `container` step](https://github.com/jenkinsci/kubernetes-plugin#pipeline-support). If needed, this automatically provided `jnlp` container may be overridden by specifying a **Container Template** with the ***Name*** `jnlp` - but that **Container Template** must be able to connect to the Team Master via JNLP with a version of the Jenkins `slave.jar` that corresponds to the Team Master Jenkins verion or the Pod Template will fail to connect to the Team Master. You can learn more about the `jnlp` container and additioal functionality in the [Jenkins Kubernetes Plugin documentation on GitHub](https://github.com/jenkinsci/kubernetes-plugin#pipeline-support).
-
-We will use the Kubernetes plugin [Pipeline `container` block](https://jenkins.io/doc/pipeline/steps/kubernetes/#container-run-build-steps-in-a-container) to run Pipeline `steps` inside a specific container configured as part of a Jenkins Kubernetes Agent Pod template. In our initial Pipeline, we used `agent any` which required at least one Jenkins agent configured to *Use this node as much as possible* - resulting in the use of a Pod Template that only had a `jnlp` container. But now we want to use Node.js in our Pipeline. [Jenkins CasC](https://github.com/jenkinsci/configuration-as-code-plugin) was used to pre-configure the [CloudBees Kube Agent Management plugin](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/agents/#_editing_pod_templates_per_team_using_masters) to include a [Kubernetes Pod Template at the Team Master level to provide a Node.js container](https://github.com/kypseli/cb-core-mm/blob/kube-workshop/config-as-code.yml#L45). Go to the top-level of your Team Master, click on the **Manage Jenkins** link and then scroll down and click on the **Kubernetes Pod Templates** item. If not at the top, scroll down to the ***Kubernetes Pod Template*** with the **Name** **'nodejs-app'** <p><img src="img/intro/k8s_agent_nodejs_template.png" width=800/> <p>Take note of the ***Labels*** field with a value of ***nodejs-app*** and the **Container Template** ***Name*** field with a value of ***nodejs*** - both of these are important and we will need those values to configure our Pipeline to use this **Pod Template** and **Container Template** in your `Jenkinsfile`.
-
-1. Navigate to and click on the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository
-2. Click on the **Edit this file** button (pencil)
-3. First, we need to update the `agent any` directive with the following so that we will get the correct Kubernetes Pod Template - configured with the **Container Template** that includes the `node:8.12.0-alpine` Docker image:
-```
-  agent { label 'nodejs-app' }
-```
-4. Commit that change and navigate to the **Activity** view of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The build logs should be almost the same as before - we are still using the default `jnlp` container. <p><img src="img/intro/k8s_agent_run_from_bo.png" width=800/> <p>
-5. Let's change that by replacing the **Say Hello** `stage` with the following **Test** `stage` so the steps run in the **nodejs** `container`. Edit the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
-
-```groovy
-pipeline {
-  agent { label 'nodejs-app' }
-  stages {
-    stage('Test') {
-      steps {
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'java -version'
-        }
-      }
-    }
-  }
-}
-```
-
-  All of the Pipeline steps within that `container` block will run in the container specified by the **Name** of the **Container Template** - and in this case that **Container Template** is using the `node:8.12.0-alpine` container image as we saw above. Commit the changes and the **helloworld-nodejs** job will run - it will result in an error because the `nodejs` container does not have Java installed (and why should it). <p><img src="img/intro/k8s_agent_java_error.png" width=800/>
-
->NOTE: If you waited for your job to complete in Blue Ocean before you navigated to the [Pipeline Runs Details View](https://jenkins.io/doc/book/blueocean/pipeline-run-details/#pipeline-run-details-view) you will discover a nice feature where if a particular step fails, the tab with the failed step will be automatically expanded, showing the console log for the failed step as you can see in the image above.
-
-1. We will fix the error in the **Test** `stage` we added above by replacing the `sh 'java -version'` step with the `sh 'node --version'` step and moving the `sh 'java -version'` step above the `container` block in the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
-```
-pipeline {
-  agent { label 'nodejs-app' }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'java -version'
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-  }
-}
-```
-7. Commit the changes and the **helloworld-nodejs** job will run and it will complete successfully with the following output: <p><img src="img/intro/k8s_agent_success.png" width=800/>
-
->**NOTE:** The sh 'java -version' step before the `container('nodejs')` completed successfully this time because it used the default `jnlp` container to execute any steps not in the `container` block.
-
-## The options Directive
-
-The [`options` directive](https://jenkins.io/doc/book/pipeline/syntax/#options) allows configuring Pipeline-specific options from within the Pipeline itself. We are going to add the `buildDiscarder` option to limit the number of logs and artifacts retained, and the `skipDefaultCheckout` option to skip checking out code by default in every stage. We will add both to one global `options` directive after the `agent` directive in the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository.
-
-1. Use the GitHub file editor to update the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository - adding the following `options` directive below the `agent` section:
-
-```groovy 
-pipeline {
-  agent { label 'nodejs-app' }
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
-```
-
-1. Next, we need to add an explicit checkout step - `checkout scm` to the **Test** stage, we don't want to do a checkout in any of the other stages but we do need a checkout in this `stage`:
-
-```
-    stage('Test') {
-      agent { label 'nodejs-app' }
-      steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-```
->NOTE: The `checkout scm` step is outside of the `container` block as there is no guarantee that the `nodejs` `container` has **git** installed.
-3. **Commit Changes** and then navigate to the **development** branch of your **helloworld-nodejs** job in the classic UI on your **Team Master** and once the job has run at least once, the job configuation will be updated to reflect what was added to the Pipeline script. <p><img src="img/intro/options_build_discard.png" width=850/>
-
-> **NOTE:** A Pipeline job must run in Jenkins before any type of Pipeline directive that modifies the job configuration can take effect because there is no way for the Jenkins Master to know about it until it runs on the Jenkins Master. Also, note that for Multibranch Pipeline projects - the only way to modify much of the configuration of the managed branch specific Pipeline jobs is by doing it in the Pipeline Jenkinsfile/script as those jobs are not directly configurable from the Jenkins UI.
-
-## Conditional Execution with `when`
-
-In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld-nodejs** repository with conditional execution using the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when). We will accomplish this by adding a branch specific `stage` to the `Jenkinsfile` in your forked **helloworld-nodejs** repository.
-
-1. Navigate to and open the GitHub editor for the `Jenkinsfile` file in **development** branch of your forked **helloworld-nodejs** repository
-2. Insert the ***Build and Push Image*** stage after the existing **Test** stage and note the `beforeAgent true` option - this setting will result in the `when` condition being evaluated before acquiring and entering an `agent` for the `stage`. The `branch` condition is a built-in condition that allows executing stages only for specific branches - in this case the ***Build and Push Image*** `stage` will only execute for the **master** branch. The entire Pipeline shoud match what is below:
-
-```
-pipeline {
-  agent { label 'nodejs-app' }
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
-  stages {
-    stage('Test') {
-      steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-    stage('Build and Push Image') {
-      when {
-         beforeAgent true
-         branch 'master'
-      }
-      steps {
-         echo "TODO - build and push image"
-      }
-    }
-  }
-}
-```
-> **NOTE:** Most of the Pod Spec is cookie cutter and the only values we really care about are the `containers` `-name` and `image` - everthing else will typically always be the same.
-
-3. Commit the changes and then navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
-4. Now we will create a [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
-5. Change the **base repository** to the **master** branch of your forked **helloworld-nodejs** repository (not the **cloudbees-days** repository), add a comment and then click the **Create pull request** button <p><img src="img/intro/conditional_create_pull_request.png" width=800/>
-6. A job will be created for the pull request and once it has completed successfully your pull request will show that **All checks have passed**. Go ahead and click the **Merge pull request** button and then click the **Confirm merge** button but DO NOT delete the **development** branch <p><img src="img/intro/conditional_merge_pull_request.png" width=800/>
-7. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Click on the run and after it has completed notice that the ***Build and Push Image*** stage was not skipped <p><img src="img/intro/conditional_not_skipped.png" width=800/>
-
 ## Next Lesson
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
 
-You may proceed to the next set of exercises - **[Stage Specific Agents, Inline Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)** - when your instructor tells you.
 
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
@@ -299,3 +160,5 @@ pipeline {
   }
 }
 ```
+
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.

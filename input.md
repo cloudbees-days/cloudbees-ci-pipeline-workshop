@@ -1,6 +1,6 @@
-# Pipeline Approvals with Interactive Input
+# Pipelines with Interactive Input
 
-In this set of exercises, we will see how you can capture interactive input in your Jenkins Pipeline while it is running.
+In exercise, we will see how you can capture interactive input in your Jenkins Pipeline while it is running.
 
 1. Use the GitHub file editor to update the **Jenkinsfile** file in the **master** branch of your forked **helloworld-nodejs** repository - adding the following `stage` to your Pipeline after the ***Build and Push Image*** `stage` and commit the changes:
 
@@ -90,9 +90,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
 
 <p><img src="img/input/input_submitter_favorite.png" width=800/>
 
-Before moving on to the next lesson you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
-
-You may proceed to the next set of exercises - **[Pipeline Pod Temaplates and Cross Team Collaboration](./cross-team-collaboration.md)** - when your instructor tells you.
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below]().
 
 ### Finished Jenkinsfile for *Pipeline Approvals with Interactive Input*
 ```
@@ -142,3 +140,5 @@ pipeline {
   }
 }
 ```
+
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.

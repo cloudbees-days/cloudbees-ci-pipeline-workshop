@@ -9,28 +9,38 @@ This repository contains instructions and learning materials for the workshop th
   * What are the key features of Declarative Pipelines?
 
 
-To get started goto the [**Set-up Instructions**](Setup.md).
+To get started goto the [**Setup Instructions**](Setup.md).
 
-**The exercises covered in the workshop are available at the following links:**
-
-* [Introduction to Pipelines with CloudBees Core](./declaragtive-basics.md)
-* [Inline Pipeline Pod Templates and Cross Team Collaboration](./cross-team-collaboration.md)
-
-
-# Training Prerequisites
+# Workshop Prerequisites
 
 In order to follow along with the hands on portion of the workshop students should have the following resources available to them:
 
-  * A basic understanding of Jenkins Pipelines: https://jenkins.io/doc/book/pipeline/getting-started/ 
-  * Internet access to include access to https://github.com to include the ability to access and use [the GitHub File Editor](https://help.github.com/articles/editing-files-in-your-repository/)
+  * Internet access to include access to https://github.com to include the ability to access and use [the GitHub File Editor](https://help.github.com/articles/editing-files-in-your-repository)
   * An account on https://github.com and a basic understanding of how to use GitHub to do things like fork a repository, edit files in the web UI, and create pull requests
   * A personal access token for your Github account ([Github-Personal-Access-Token.md](Github-Personal-Access-Token.md)) with the following permissions:
     - repo: all
     - admin:repo_hook: all
     - admin:org_hook
     - user: all
-  
-Detailed set-up instructions are available at **[Setup](Setup.md)**
+  * A basic understanding of Docker: https://docs.docker.com/get-started/
+  * A basic understanding of Kubernetes: https://kubernetes.io/docs/tutorials/kubernetes-basics/
+  * A basic understanding of Jenkins Pipelines: https://jenkins.io/doc/book/pipeline/getting-started/ 
+   
+Detailed setup instructions are available at **[Setup](Setup.md)**
+
+# Workshop Labs
+
+**The labs covered in this workshop are available at the following links:**
+
+* Lab 1. [Introduction to Declarative Pipelines](./declarative-basics.md)
+* Lab 2. [Stage specific agents](./stage-specific-agents.md)
+* Lab 3. [Using the `options` directive](./options-directive.md)
+* Lab 4. [Conditional Execution using the `when` directive](./options-directive.md)
+* Lab 5. [Inline Pipeline Pod Templates](./inline-pipeline-pod-templates.md)
+* Lab 6. [Pipeline with Interactive Input](./input.md)
+* Lab 7. [Pipeline Catalog Templates](./pipeline-catalog-templates.md)
+* Lab 8. [Cross Team Collaboration](./cross-team-collaboration.md)
+
 
 # Disclaimer
 

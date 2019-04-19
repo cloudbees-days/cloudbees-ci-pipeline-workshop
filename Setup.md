@@ -58,8 +58,8 @@ The workshop utilizes the **helloworld-nodejs** repository from the [CloudBees D
 
 * https://github.com/cloudbees-days/helloworld-nodejs 
 
-## Finished Set-up
+## Finished Setup
 You should see the following **Create a new Pipeline** screen for your Team:
 <p><img src="img/setup/setup-success.png" width=600/>
   
-You may proceed to the first set of exercises - **[Introduction to Pipelines with CloudBees Core](declarative-basics.md)** - when your instructor tells you.
+You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
