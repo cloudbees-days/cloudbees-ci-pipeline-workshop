@@ -46,7 +46,7 @@ pipeline {
 
 Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
 
-### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
+### Finished Jenkinsfile for *Conditional Execution using the `when` directive* lab
 ```
 pipeline {
   agent { label 'nodejs-app' }
