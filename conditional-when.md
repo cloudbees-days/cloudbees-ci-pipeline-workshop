@@ -44,7 +44,7 @@ pipeline {
 
 ## Next Lesson
 
-Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from below:
 
 ### Finished Jenkinsfile for *Conditional Execution using the `when` directive* lab
 ```
