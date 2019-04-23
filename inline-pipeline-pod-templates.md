@@ -45,4 +45,4 @@ spec:
 10. Next, open the GitHub editor for the **nodejs-pod.yaml** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository. Update the `image` for the **nodejs** `container` to be `node:10.10.0-alpine`.
 11. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will run successfully. Also, note the output of the `sh 'node --version'` step - it is `v10.10.0` instead of `v8.12.0`: <p><img src="img/cross-team/pipeline_pod_template_node_version.png" width=850/>
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+You may proceed to the next [**lab**](./README.md#workshop-labs).
