@@ -6,7 +6,7 @@ In this exercise we will explore stage specific agents, a more advanced usage of
 
 Up to this point we have had only one global `agent` defined and it is being used by all `stages` of our `pipeline`. However, we don't need an `agent` for the ***Build and Push Image*** `stage`. We will update the Pipeline to have **no** global `agent` and use the current global `nodejs-app` `agent` just for the Test `stage`.
 
-1. Open the GitHub editor for the `Jenkinsfile` file in the **master** branch of your forked **helloworld-nodejs** repository.
+1. Open the GitHub editor for the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository.
 2. Replace the global `agent` section with the following:
 ```
   agent none
@@ -29,9 +29,9 @@ Up to this point we have had only one global `agent` defined and it is being use
       }
     }
 ```
-5. Commit the changes and navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/cross-team/stage_agent_master_fail.png" width=800/>
-6. Open the GitHub editor for the `Jenkinsfile` file in the **master** branch of your forked helloworld-nodejs repository
-7. Remove the `sh 'java -version'` step from the ***Build and Push Image*** `stage` and commit the changes to the **master** branch.
-8. The commit will trigger the **helloworld-nodejs** **master** branch job again and it will complete successfully.
+5. Commit the changes and navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. The job will fail with the following error: <p><img src="img/cross-team/stage_agent_master_fail.png" width=800/>
+6. Open the GitHub editor for the `Jenkinsfile` file in the **development** branch of your forked helloworld-nodejs repository
+7. Remove the `sh 'java -version'` step from the ***Build and Push Image*** `stage` and commit the changes to the **development** branch.
+8. The commit will trigger the **helloworld-nodejs** **development** branch job again and it will complete successfully.
 
 You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
