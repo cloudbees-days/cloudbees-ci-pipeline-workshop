@@ -133,28 +133,12 @@ Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
 pipeline {
-  agent { label 'nodejs-app' }
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
+  agent any
   stages {
-    stage('Test') {
+    stage('Say Hello') {
       steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-    stage('Build and Push Image') {
-      when {
-        beforeAgent true
-        branch 'master'
-      }
-      steps {
-        echo "TODO - build and push image"
+        echo 'Hello World!'   
+        sh 'java -version'
       }
     }
   }

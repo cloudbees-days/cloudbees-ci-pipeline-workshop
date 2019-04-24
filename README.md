@@ -36,7 +36,7 @@ Detailed setup instructions are available at **[Setup](Setup.md)**
 * Lab 2. [Stage specific agents](./stage-specific-agents.md)
 * Lab 3. [Using the `options` directive](./options-directive.md)
 * Lab 4. [Conditional Execution using the `when` directive](./conditional-when.md)
-* Lab 5. [Inline Pipeline Pod Templates](./inline-pipeline-pod-templates.md)
+* Lab 5. [Custom Pipeline Pod Templates](./custom-pipeline-pod-templates.md)
 * Lab 6. [Pipeline with Interactive Input](./input.md)
 * Lab 7. [Pipeline Catalog Templates](./pipeline-catalog-templates.md)
 * Lab 8. [Cross Team Collaboration](./cross-team-collaboration.md)

@@ -32,4 +32,27 @@ pipeline {
 
 > **NOTE:** A Pipeline job must run in Jenkins before any type of Pipeline directive that modifies the job configuration can take effect because there is no way for the Jenkins Master to know about it until it runs on the Jenkins Master. Also, note that for Multibranch Pipeline projects - the only way to modify much of the configuration of the managed branch specific Pipeline jobs is by doing it in the Pipeline Jenkinsfile/script as those jobs are not directly configurable from the Jenkins UI.
 
+
+### Finished Jenkinsfile for *The options Directive*
+```
+pipeline {
+  agent { label 'nodejs-app' }
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+  }
+  stages {
+    stage('Test') {
+      steps {
+        checkout scm
+        container('nodejs') {
+          echo 'Hello World!'   
+          sh 'node --version'
+        }
+      }
+    }
+  }
+}
+```
+
 You may proceed to the next lab [*Lab 4. Conditional Execution using the when directive*](./conditional-when.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
