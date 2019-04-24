@@ -48,7 +48,7 @@ Although the examples and code in this repository was originally created by empl
 
 # Contributors 
 
-* Contributors: [Cojan van Ballegooijen](https://github.com/cvanballegooijen), [Kurt Madel](https://github.com/kmadel)
+* Contributors: [Cojan van Ballegooijen](https://github.com/cvanballegooijen), [Kurt Madel](https://github.com/kmadel), [Logan Donley](https://github.com/logandonley)
  
 # Questions, Feedback, Pull Requests Etc.
 
