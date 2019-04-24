@@ -133,32 +133,16 @@ Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
 pipeline {
-  agent { label 'nodejs-app' }
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
+  agent any
   stages {
-    stage('Test') {
+    stage('Say Hello') {
       steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-    stage('Build and Push Image') {
-      when {
-        beforeAgent true
-        branch 'master'
-      }
-      steps {
-        echo "TODO - build and push image"
+        echo 'Hello World!'   
+        sh 'java -version'
       }
     }
   }
 }
 ```
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+You may proceed to the next lab [*Lab 2. Stage specific agents*](./stage-specific-agents.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

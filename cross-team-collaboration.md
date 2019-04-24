@@ -74,4 +74,5 @@ pipeline {
 }
 ```
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+
+You've reached the end of the workshop! You can head back to the main list of [**labs**](./README.md#workshop-labs) if you like.
