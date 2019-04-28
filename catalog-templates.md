@@ -14,4 +14,4 @@ Pipeline Catalog Templates provide version controlled paramaterized templates fo
    3. Click the **Save** button<p><img src="img/catalog/template_parameters.png" width=800/>
 5. You may need to refresh the Multibranch job screen, but eventually you should have two jobs - one for the **development** branch and one for the **master** branch<p><img src="img/catalog/two_jobs.png" width=800/>
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+You may proceed to the next lab [*Lab 7. Cross Team Collaboration*](./cross-team-collaboration.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

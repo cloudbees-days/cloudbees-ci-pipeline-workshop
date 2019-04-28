@@ -80,5 +80,4 @@ pipeline {
 }
 ```
 
-
-You've reached the end of the workshop! You can head back to the main list of [**labs**](./README.md#workshop-labs) if you like.
+You may proceed to the next lab [*Lab 8. Pipeline with Interactive Input*](./input.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

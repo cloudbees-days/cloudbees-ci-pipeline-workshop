@@ -141,4 +141,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 7. Pipeline Catalog Templates*](./pipeline-catalog-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You've reached the end of the workshop! You can head back to the main list of [**labs**](./README.md#workshop-labs) if you like.

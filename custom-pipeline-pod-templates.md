@@ -81,4 +81,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 6. Pipeline with Interactive Input*](./input.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 6. CloudBees Pipeline Catalog Templates*](./catalog-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
