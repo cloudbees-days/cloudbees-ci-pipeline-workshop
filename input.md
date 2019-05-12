@@ -1,6 +1,6 @@
 # Pipelines with Interactive Input
 
-In exercise, we will see how you can capture interactive input in your Jenkins Pipeline while it is running.
+In this exercise, we will see how you can capture interactive input in your Jenkins Pipeline while it is running.
 
 1. Use the GitHub file editor to update the **Jenkinsfile** file in the **master** branch of your forked **helloworld-nodejs** repository - adding the following `stage` to your Pipeline after the ***Build and Push Image*** `stage` and commit the changes:
 
