@@ -56,7 +56,7 @@ pipeline {
 ```
 7. Commit the changes and the **helloworld-nodejs** job will run and it will complete successfully with the following output: <p><img src="img/intro/k8s_agent_success.png" width=800/>
 
->**NOTE:** The sh 'java -version' step before the `container('nodejs')` icompleted successfully this time because it used the default `jnlp` container to execute any steps not in the `container` block.
+>**NOTE:** The sh 'java -version' step before the `container('nodejs')` completed successfully this time because it used the default `jnlp` container to execute any steps not in the `container` block.
 
 ### Finished Jenkinsfile for *Stage Specific Agents*
 ```
