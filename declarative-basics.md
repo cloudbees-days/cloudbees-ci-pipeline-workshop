@@ -127,38 +127,22 @@ openjdk version "1.8.0_171"
 
 ## Next Lesson
 
-Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **development** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
 
 
 ### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
 ```
 pipeline {
-  agent { label 'nodejs-app' }
-  options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-  }
+  agent any
   stages {
-    stage('Test') {
+    stage('Say Hello') {
       steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
-      }
-    }
-    stage('Build and Push Image') {
-      when {
-        beforeAgent true
-        branch 'master'
-      }
-      steps {
-        echo "TODO - build and push image"
+        echo 'Hello World!'   
+        sh 'java -version'
       }
     }
   }
 }
 ```
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+You may proceed to the next lab [*Lab 2. Stage specific agents*](./stage-specific-agents.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

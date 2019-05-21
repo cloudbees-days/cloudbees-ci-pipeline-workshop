@@ -44,9 +44,9 @@ pipeline {
 
 ## Next Lesson
 
-Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from [below](#finished-jenkinsfile-for-introduction-to-pipelines-with-cloudbees-core).
+Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline script on the **master** branch of your forked **helloworld-nodejs** repository matches the one from below:
 
-### Finished Jenkinsfile for *Introduction to Pipelines with CloudBees Core*
+### Finished Jenkinsfile for *Conditional Execution using the `when` directive* lab
 ```
 pipeline {
   agent { label 'nodejs-app' }
@@ -77,4 +77,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next set of [**labs**](./README.md#workshop-labs) - when your are you ready with this lab.
+You may proceed to the next lab [*Lab 5. Custom Pipeline Pod Templates*](./custom-pipeline-pod-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
