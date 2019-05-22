@@ -1,6 +1,6 @@
 # Create a personal access token in GitHub
 
-Goto http://github.com/settings/tokens to generate a new token as depicted below.
+Goto http://github.com/settings/tokens to generate a new personal access token as depicted below.
 
 <img src="img/github/github-settings-tokens.png" width=800/>
 
@@ -23,6 +23,6 @@ as depicted below:
 
 <img src="img/github/token-access-settings.png" width=800/>
 
-Click the Generate token button at the bottom of the screen above to generate the GitHub token which will be used in this workshop.
+Click the Generate token button at the bottom of the screen above to generate the GitHub personal access token which will be used in this workshop.
 
 You may proceed with the workshop [**labs**](./README.md) when you are ready.
