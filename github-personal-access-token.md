@@ -25,4 +25,4 @@ as depicted below:
 
 Click the Generate token button at the bottom of the screen above to generate the GitHub token which will be used in this workshop.
 
-You may proceed with the workshop [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed with the workshop [**labs**](./README.md) when you are ready.
