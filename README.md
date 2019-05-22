@@ -17,7 +17,7 @@ In order to follow along with the hands on portion of the workshop students shou
 
   * Internet access to include access to https://github.com to include the ability to access and use [the GitHub File Editor](https://help.github.com/articles/editing-files-in-your-repository)
   * An account on https://github.com and a basic understanding of how to use GitHub to do things like fork a repository, edit files in the web UI, and create pull requests
-  * A personal access token for your Github account ([Github-Personal-Access-Token.md](Github-Personal-Access-Token.md)) with the following permissions:
+  * A personal access token for your Github account ([Github-Personal-Access-Token.md](github-personal-access-token.md)) with the following permissions:
     - repo: all
     - admin:repo_hook: all
     - admin:org_hook
@@ -32,14 +32,14 @@ Detailed setup instructions are available at **[Setup](Setup.md)**
 
 **The labs covered in this workshop are available at the following links:**
 
-* Lab 1. [Introduction to Declarative Pipelines](./declarative-basics.md)
-* Lab 2. [Stage specific agents](./stage-specific-agents.md)
-* Lab 3. [Using the `options` directive](./options-directive.md)
-* Lab 4. [Conditional Execution using the `when` directive](./conditional-when.md)
-* Lab 5. [Custom Pipeline Pod Templates](./custom-pipeline-pod-templates.md)
-* Lab 6. [CloudBees Pipeline Catalog Templates](./catalog-templates.md)
-* Lab 7. [Cross Team Collaboration](./cross-team-collaboration.md)
-* Lab 8. [Pipeline with Interactive Input](./input.md)
+* Lab 1 - [Introduction to Declarative Pipelines](./declarative-basics.md)
+* Lab 2 - [Stage specific agents](./stage-specific-agents.md)
+* Lab 3 - [Using the `options` directive](./options-directive.md)
+* Lab 4 - [Conditional Execution using the `when` directive](./conditional-when.md)
+* Lab 5 - [Custom Pipeline Pod Templates](./custom-pipeline-pod-templates.md)
+* Lab 6 - [CloudBees Pipeline Catalog Templates](./catalog-templates.md)
+* Lab 7 - [Cross Team Collaboration](./cross-team-collaboration.md)
+* Lab 8 - [Pipeline with Interactive Input](./input.md)
 
 
 # Disclaimer
