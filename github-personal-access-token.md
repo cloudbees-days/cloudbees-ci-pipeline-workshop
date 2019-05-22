@@ -12,7 +12,7 @@ Name the token in the Note input field in our case: "cloudbees-core-workshop"
 
 <img src="img/github/generate-new-token.png" width=800/>
 
-Add the following permissions to token:
+Add the following permissions to the Personal Access token:
 
     - repo: all
     - admin:repo_hook: all
