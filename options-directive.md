@@ -55,4 +55,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 4. Conditional Execution using the when directive*](./conditional-when.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 4 - Conditional Execution using the when directive*](./conditional-when.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
