@@ -18,7 +18,7 @@ spec:
     - cat
     tty: true
   - name: testcafe
-    image: 946759952272.dkr.ecr.us-east-1.amazonaws.com/kypseli/testcafe:alpha-1
+    image: gcr.io/technologists/testcafe:0.0.1
     command:
     - cat
     tty: true
