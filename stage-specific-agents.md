@@ -59,13 +59,18 @@ pipeline {
 >**NOTE:** The sh 'java -version' step before the `container('nodejs')` completed successfully this time because it used the default `jnlp` container to execute any steps not in the `container` block.
 
 ### Finished Jenkinsfile for *Stage Specific Agents*
+For the finished Jenkinsfile for this stage, remove the `sh 'jave -version'` step and make sure you copy the Pipeline as below and replace yours.
 ```
 pipeline {
   agent { label 'nodejs-app' }
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+  }
   stages {
     stage('Test') {
       steps {
-        sh 'java -version'
+        checkout scm
         container('nodejs') {
           echo 'Hello World!'   
           sh 'node --version'
@@ -76,4 +81,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 3. Using the options directive*](./options-directive.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 3. Conditional Execution using the `when` directive*](./conditional-when.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
