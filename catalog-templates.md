@@ -12,7 +12,8 @@ Pipeline Template Catalogs provide version controlled paramaterized templates fo
    1. **Repository Owner**: the GitHub Organization your created for the CloudBees Core workshop
    2. **GitHub Credential ID**: select the *username/password* credential you created for the the CloudBees Core workshop - it will show up as - [GitHub username]/******
    3. Click the **Save** button<p><img src="img/catalog/template_parameters.png" width=800/>
-5. You may need to refresh the Multibranch job screen, but eventually you should have two jobs - one for the **development** branch and one for the **master** branch<p><img src="img/catalog/two_jobs.png" width=800/>
+5. The initial scan won't find any branches because you have to add the [custom markerfile](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/pipeline/#_multibranch_pipeline_options_in_template_yaml) `.nodejs-app` to any branch that you want a job to be created. Start by adding it to your **development** branch, then once that job runs successfully add it to your **master** branch.
+6. You may need to refresh the Multibranch job screen, but eventually you should have two jobs - one for the **development** branch and one for the **master** branch<p><img src="img/catalog/two_jobs.png" width=800/>
 
 ## Web Browser Tests with Testcafe
 
