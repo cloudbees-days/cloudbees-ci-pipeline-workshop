@@ -7,13 +7,14 @@ In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld
 
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {
@@ -48,13 +49,14 @@ Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline
 ### Finished Jenkinsfile for *Conditional Execution using the `when` directive* lab
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {

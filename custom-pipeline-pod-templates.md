@@ -48,18 +48,19 @@ spec:
 ### Finished Jenkinsfile for *Custom Pipeline Pod Templates*
 ```
 pipeline {
-  agent {
-    kubernetes {
-      label 'nodejs-app-pod-2'
-      yamlFile 'nodejs-pod.yaml'
-    }
-  }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent {
+        kubernetes {
+          label 'nodejs-app-pod-2'
+          yamlFile 'nodejs-pod.yaml'
+        }
+      }
       steps {
         checkout scm
         container('nodejs') {

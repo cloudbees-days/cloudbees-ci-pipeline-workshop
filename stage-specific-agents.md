@@ -10,18 +10,24 @@ We will use the Kubernetes plugin [Pipeline `container` block](https://jenkins.i
 
 1. Navigate to and click on the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository
 2. Click on the **Edit this file** button (pencil)
-3. First, we need to update the `agent any` directive with the following so that we will get the correct Kubernetes Pod Template - configured with the **Container Template** that includes the `node:8.12.0-alpine` Docker image:
+3. Replace the global `agent` section with the following:
 ```
-  agent { label 'nodejs-app' }
+  agent none
 ```
-4. Commit that change and navigate to the **Activity** view of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The build logs should be almost the same as before - we are still using the default `jnlp` container. <p><img src="img/intro/k8s_agent_run_from_bo.png" width=800/> <p>
-5. Let's change that by replacing the **Say Hello** `stage` with the following **Test** `stage` so the steps run in the **nodejs** `container`. Edit the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
+
+4. Next, in the **Test** `stage` add the following `agent` section right above the `steps` section so that we will get the correct Kubernetes Pod Template - configured with the **Container Template** that includes the `node:8.12.0-alpine` Docker(container) image: 
+```
+    agent { label 'nodejs-app' }
+```
+5. Commit that change and navigate to the **Activity** view of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The build logs should be almost the same as before - we are still using the default `jnlp` container. <p><img src="img/intro/k8s_agent_run_from_bo.png" width=800/> <p>
+6. Let's change that by replacing the **Say Hello** `stage` with the following **Test** `stage` so the steps run in the **nodejs** `container`. Edit the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
 
 ```groovy
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         container('nodejs') {
           echo 'Hello World!'   
@@ -40,9 +46,10 @@ pipeline {
 6. We will fix the error in the **Test** `stage` we added above by replacing the `sh 'java -version'` step with the `sh 'node --version'` step and moving the `sh 'java -version` step above the `container` block in the `Jenkinsfile` file in the **development** branch of your forked **helloworld-nodejs** repository so the entire pipeline looks like the following:
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         sh 'java -version'
         container('nodejs') {
@@ -62,13 +69,14 @@ pipeline {
 **Important**: For the finished Jenkinsfile for this stage, remove the `sh 'java -version'` step and make sure you copy the Pipeline as below and replace yours. NOTE: We also added some global [`options` directives](https://jenkins.io/doc/book/pipeline/syntax/#options). If you would like to learn more about Declarative Pipeline `options` you can check out Lab 8. [Using the `options` directive](./options-directive.md).
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {
