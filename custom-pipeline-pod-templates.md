@@ -29,12 +29,12 @@ spec:
 5. Replace the `agent` section of the **Test** `stage` with the following - note that the value of the `yamlFile` parameter is the name of the file we created:
 
 ```
-      agent {
-        kubernetes {
-          label 'nodejs-app-pod-2'
-          yamlFile 'nodejs-pod.yaml'
-        }
-      }
+  agent {
+    kubernetes {
+      label 'nodejs-app-pod-2'
+      yamlFile 'nodejs-pod.yaml'
+    }
+  }
 ```
 
 
