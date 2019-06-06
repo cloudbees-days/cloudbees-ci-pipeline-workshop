@@ -8,6 +8,7 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     stage('Deploy') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       input {
@@ -19,6 +20,8 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     }
 ```
 
+|NOTE: We added the the `beforeInput` option set to `true` so that the `when` condition will be checked before the `input` - if we didn't add that option then the `input` would be executed before the `when` condition and it would execute for all branches, not just the `master` branch.
+
 2. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Note the `input` prompt during the `Deploy` stage. Go ahead and click the **Proceed** button and the job will complete successfully.  *The `input` prompt is also available in the Console log and classic Stage View.* <p><img src="img/input/input_basic.png" width=800/>
 
 3. If you hadn't clicked on either the **Proceed** or **Abort** button in the `input` prompt then your Team Master would haved waited indefinitely for a user response. Let's fix that by setting a timeout. Earlier we used `options` at the global `pipeline` level to set the ***Discard old builds*** strategy for your Team Master with the `buildDiscarder` `option`. Now we will configure `options` at the `stage` level. We will add a `timeout` `option` for the **Deploy** `stage` using the [`stage` `options` directive](https://jenkins.io/doc/book/pipeline/syntax/#stage-options). Update the **Deploy** `stage` to match the following in the **master** branch and then commit the changes:
@@ -27,6 +30,7 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     stage('Deploy') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       options {
@@ -114,6 +118,7 @@ pipeline {
     stage('Build and Push Image') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       steps {
