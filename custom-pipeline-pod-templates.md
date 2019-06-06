@@ -31,7 +31,7 @@ spec:
 ```
       agent {
         kubernetes {
-          label 'nodejs-app-pod-2'
+          label 'nodejs-app-pod'
           yamlFile 'nodejs-pod.yaml'
         }
       }
@@ -43,7 +43,7 @@ spec:
 8. The pod will be in pending state for a few minutes and eventually fail. Click in the name of the failed pod and you will see that the **nodejs** container has an error - it looks like there is not a **node** container image available with that tag. If you go to [Docker Hub and look at the tags available for the **node** image](https://hub.docker.com/r/library/node/tags/) you will see there is a **10.10.0-alpine** but not a **10.10.1-alpine** tag for the **node** image: <p><img src="img/cross-team/pipeline_pod_template_containers_error.png" width=800/> 
 9. Click **Open Blue Ocean** on the left and go to the latest build of **helloworld-nodejs**. Abort the current run (or it will keep trying to load that faulty pod template forever) <p><img src="img/cross-team/pipeline_pod_template_stop.png" width=800/> 
 10. Next, open the GitHub editor for the **nodejs-pod.yaml** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository. Update the `image` for the **nodejs** `container` to be `node:10.10.0-alpine` and commit the changes.
-11. Next, open your **Jenkinsfile** and udpate `kubernetes` `label` to **nodejs-app-pod-2**. 
+11. Next, open your **Jenkinsfile** and update `kubernetes` `label` to **nodejs-app-pod-2**. 
 12. Commit the changes and then navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job will run successfully. Also, note the output of the `sh 'node --version'` step - it is `v10.10.0` instead of `v8.12.0`: <p><img src="img/cross-team/pipeline_pod_template_node_version.png" width=850/>
 
 ### Finished Jenkinsfile for *Custom Pipeline Pod Templates*
