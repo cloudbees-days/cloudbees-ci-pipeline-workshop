@@ -32,7 +32,6 @@ That event will be published **across all Team Masters in our Workshop cluster**
 
 Now I, once I commit that change, and run the **helloworld-api** job and everyone should see the **master** branch of their **helloworld-nodejs** job triggered. <p><img src="img/cross-team/cross_team_triggered_by_event.png" width=850/>
 
-After you have completed the above exercises, you can make sure that your **Jenkinsfile** Pipeline script is correct by comparing to or copying from [below](https://github.com/cloudbees-days/cloudbees-core-workshop/blob/master/cross-team-collaboration.md#finished-jenkinsfile-for-pipeline-pod-temaplates-and-cross-team-collaboration).
 
 ## Next Lesson
 
