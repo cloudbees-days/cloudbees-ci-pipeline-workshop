@@ -26,12 +26,12 @@ spec:
 
 3. At the bottom of the screen enter a commit message, leave ***Commit directly to the `master` branch** selected and click the **Commit new file** button
 4. Now we need to update our Pipeline to use that file. Open the GitHub editor for the **Jenkinsfile** Pipeline script in the **master** branch of your forked **helloworld-nodejs** repository.
-5. Replace the `agent` section of the **Test** `stage` with the following - note that the valule of the `yamlFile` parameter is the name of the file we created:
+5. Replace the `agent` section of the **Test** `stage` with the following - note that the value of the `yamlFile` parameter is the name of the file we created:
 
 ```
       agent {
         kubernetes {
-          label 'nodejs-app-pod'
+          label 'nodejs-app-pod-2'
           yamlFile 'nodejs-pod.yaml'
         }
       }
