@@ -78,7 +78,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
       }
 ```
 
-2. So, we added one additonal configuration option for our `input` directive: `submitterParameter`. Setting the  `submitterParameter` option will result in a Pipeline environmental variable named `APPROVER` being set with the value being the username of the user that submitted the `input`. In the example above it will either be **beedemo-ops**. Update the `steps` section so the `echo` step in your `Jenkinsfile` Pipeline script will print the `APPROVER` environmental variable and then commit the changes:
+2. So, we added one additonal configuration option for our `input` directive: `submitterParameter`. Setting the  `submitterParameter` option will result in a Pipeline environmental variable named `APPROVER` being set with the value being the username of the user that submitted the `input`. In the example above it will be **beedemo-ops**. Update the `steps` section so the `echo` step in your `Jenkinsfile` Pipeline script will print the `APPROVER` environmental variable and then commit the changes:
 
 ```
       steps {
@@ -86,7 +86,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
       }
 ```
 
-3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. If you attempt to approve the `input` you will get an error: <p><img src="img/input/input_submitter_error.png" width=800/>
+3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job should be waiting for `input`: <p><img src="img/input/input_submitter_pending.png" width=800/>
 4. The ***submitter*** needs to navigate to the **master** branch of your **helloworld-nodejs** job on your Team Master to approve the `input` of your **helloworld-nodejs** Pipeline. You can use the *Team switcher* to quickly navigate to another Team Master that you are a member. The *Team switcher* drop-down will appear in the top right of your screen once you have been added as a member to another Team Master. The ***submitter*** needs to switch to the Team where they are a *Team Guest* member by selecting that team from the *Team switcher* drop-down. <p><img src="img/input/input_submitter_team_switcher.png" width=600/>
 5. As the ***submitter*** navigate to the **helloworld-nodejs** job on your new team and approve the `input`. Note the output of the `echo` step. <p><img src="img/input/input_submitter_approved_by.png" width=850/>
 
@@ -146,4 +146,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 9. The options Directive*](./options-directive.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may *optionally* proceed to [*Lab 8. Using the `options` directive*](./options-directive.md), or head back to the main list of the [**labs**](./README.md#workshop-labs).
