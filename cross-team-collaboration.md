@@ -22,7 +22,7 @@ The Cross Team Collaboration feature has a configurable router for routing event
 
 >**NOTE:**After first adding a new `trigger` you must run the job at least once so that the `trigger` is saved to the Jenkins job configuration (similar to what was necessary for the `buildDiscarder` `option` earlier). <p><img src="img/cross-team/cross_team_trigger_configured.png" width=850/>
 
-Now I will set up a Multinbranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository and add the following [simple event](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/#cross-team-event-types) to the **Deploy** stage of the **helloworld-api** `Jenksfile` : 
+Now I will set up a Multibranch Pipeline project for the https://github.com/cloudbees-days/helloworld-api repository and add the following [simple event](https://go.cloudbees.com/docs/cloudbees-core/cloud-admin-guide/cross-team-collaboration/#cross-team-event-types) to the **Deploy** stage of the **helloworld-api** `Jenkinsfile` : 
 
 ```
 publishEvent simpleEvent('hello-api-deploy-event')
