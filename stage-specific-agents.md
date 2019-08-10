@@ -15,7 +15,7 @@ We will use the Kubernetes plugin [Pipeline `container` block](https://jenkins.i
   agent none
 ```
 
-4. Next, in the **Test** `stage` add the following `agent` section right above the `steps` section so that we will get the correct Kubernetes Pod Template - configured with the **Container Template** that includes the `node:8.12.0-alpine` Docker(container) image: 
+4. Next, in the **Say Hello** `stage` add the following `agent` section right above the `steps` section so that we will get the correct Kubernetes Pod Template - configured with the **Container Template** that includes the `node:8.12.0-alpine` Docker(container) image: 
 ```
     agent { label 'nodejs-app' }
 ```
