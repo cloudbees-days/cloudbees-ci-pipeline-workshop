@@ -39,7 +39,10 @@ Detailed setup instructions are available at **[Setup](Setup.md)**
 * Lab 5. [CloudBees Pipeline Template Catalogs](./catalog-templates.md)
 * Lab 6. [CloudBees Cross Team Collaboration](./cross-team-collaboration.md)
 * Lab 7. [Pipeline with Interactive Input](./input.md)
-* Lab 8. [Using the `options` directive](./options-directive.md)
+
+**Optional Labs:**
+
+* Lab A. [Using the `options` directive](./options-directive.md)
 
 
 # Disclaimer

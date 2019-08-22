@@ -151,4 +151,8 @@ pipeline {
 }
 ```
 
-You may *optionally* proceed to [*Lab 8. Using the `options` directive*](./options-directive.md), or head back to the main list of the [**labs**](./README.md#workshop-labs).
+You've reached the end of the CloudBees Core workshop! Click here to head back to the main list of [**labs**](./README.md#workshop-labs).
+
+If you are interested to learn more about ways to monitor your Jenkins platform and measure to improve your DevOps performance using Value Streams, recommend proceeding to the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
+
+You may also check out the other labs offered by us here: [CloudBees Days Workshop](https://github.com/cloudbees-days).
