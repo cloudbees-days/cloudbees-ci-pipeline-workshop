@@ -22,6 +22,8 @@ spec:
     command:
     - cat
     tty: true
+  securityContext:
+    runAsUser: 1000
 ```
 
 3. At the bottom of the screen enter a commit message, leave **Commit directly to the `master` branch** selected and click the **Commit new file** button
