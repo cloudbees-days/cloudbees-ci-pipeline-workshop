@@ -19,7 +19,7 @@ The URL for the GitHub Repository with these instructions and the exercises is *
 Next, everyone will get their own Jenkins masters referred to as a Team Master.
 
 1. If not in CloudBees Team UI, click on the **Teams** link in the left menu; <p><img src="img/setup/setup-classic-ui-Teams-link.png" width=400/>
-2. Click on the **Create team** button in the center of your screen;<p><img src="img/setup/setup-create-a-team.png" width=300/>
+2. Click on the **Create team** button in the center of your screen;<p><img src="img/setup/setup-create-a-team.png" width=400/>
 3. **Name this team** - enter a name for your team - **IMPORTANT: to ensure uniqueness, use your GitHub username** and then click **Next**;<p><img src="img/setup/setup-name-this-team.png" width=450/>
 4. **Choose an icon for this team** to help uniquely identify your team - select an icon and color for your team and then click **Next**;
 5. **Add people to this team** - your user will show up as a **Team Admin** and we won't be adding any additional users right now, but feel free to look around and then click **Next**;
