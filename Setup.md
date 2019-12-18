@@ -1,7 +1,7 @@
 # Workshop Setup
 
 ## CloudBees Core Team Master Set-up
-Setup a work environment for the lessons provided in this workshop.  Ask the instructor for the URL of the server you will be using during the workshop.
+Setup a work environment for the labs provided in this workshop.  Ask the instructor for the URL of the server you will be using during the workshop.
 
 Today's URL for the CloudBees Core environment is https://workshop.cb-sa.io/cjoc/
 
