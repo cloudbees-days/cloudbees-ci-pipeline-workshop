@@ -7,13 +7,14 @@ In this exercise we will edit the `Jenkinsfile` file in your forked **helloworld
 
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {
@@ -34,13 +35,12 @@ pipeline {
   }
 }
 ```
-> **NOTE:** Most of the Pod Spec is cookie cutter and the only values we really care about are the `containers` `-name` and `image` - everthing else will typically always be the same.
 
-3. Commit the changes and then navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
-4. Now we will create a [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
-5. Change the **base repository** to the **master** branch of your forked **helloworld-nodejs** repository (not the **cloudbees-days** repository), add a comment and then click the **Create pull request** button <p><img src="img/intro/conditional_create_pull_request.png" width=800/>
-6. A job will be created for the pull request and once it has completed successfully your pull request will show that **All checks have passed**. Go ahead and click the **Merge pull request** button and then click the **Confirm merge** button but DO NOT delete the **development** branch <p><img src="img/intro/conditional_merge_pull_request.png" width=800/>
-7. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Click on the run and after it has completed notice that the ***Build and Push Image*** stage was not skipped <p><img src="img/intro/conditional_not_skipped.png" width=800/>
+1. Commit the changes and then navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **development** branch should be running or queued to run. Note that the ***Build and Push Image*** `stage` was skipped. <p><img src="img/intro/conditional_skipped_stage.png" width=800/>
+2. Now we will create a [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) between the **development** branch and **master** branch of your forked **helloworld-nodejs** repository. Navigate to your forked **helloworld-nodejs** repository in GitHub - click on the **New pull request** button <p><img src="img/intro/conditional_new_pull_request.png" width=800/>
+3. Change the **base repository** to the **master** branch of your forked **helloworld-nodejs** repository (not the **cloudbees-days** repository), add a comment and then click the **Create pull request** button <p><img src="img/intro/conditional_create_pull_request.png" width=800/>
+4. A job will be created for the pull request and once it has completed successfully your pull request will show that **All checks have passed**. Go ahead and click the **Merge pull request** button and then click the **Confirm merge** button but DO NOT delete the **development** branch <p><img src="img/intro/conditional_merge_pull_request.png" width=800/>
+5. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Click on the run and after it has completed notice that the ***Build and Push Image*** stage was not skipped <p><img src="img/intro/conditional_not_skipped.png" width=800/>
 
 ## Next Lesson
 
@@ -49,13 +49,14 @@ Before moving on to the next lesson make sure that your **Jenkinsfile** Pipeline
 ### Finished Jenkinsfile for *Conditional Execution using the `when` directive* lab
 ```
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         checkout scm
         container('nodejs') {
@@ -77,4 +78,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 5 - Custom Pipeline Pod Templates*](./custom-pipeline-pod-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 4 - Custom Pipeline Pod Templates*](./custom-pipeline-pod-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
