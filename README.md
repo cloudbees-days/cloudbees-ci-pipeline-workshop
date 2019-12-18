@@ -34,12 +34,11 @@ Detailed setup instructions are available at **[Setup](Setup.md)**
 
 * Lab 1 - [Introduction to Declarative Pipelines](./declarative-basics.md)
 * Lab 2 - [Stage specific agents](./stage-specific-agents.md)
-* Lab 3 - [Using the `options` directive](./options-directive.md)
-* Lab 4 - [Conditional Execution using the `when` directive](./conditional-when.md)
-* Lab 5 - [Custom Pipeline Pod Templates](./custom-pipeline-pod-templates.md)
-* Lab 6 - [CloudBees Pipeline Catalog Templates](./catalog-templates.md)
-* Lab 7 - [Cross Team Collaboration](./cross-team-collaboration.md)
-* Lab 8 - [Pipeline with Interactive Input](./input.md)
+* Lab 3 - [Conditional Execution using the `when` directive](./conditional-when.md)
+* Lab 4 - [Custom Pipeline Pod Templates](./custom-pipeline-pod-templates.md)
+* Lab 5 - [CloudBees Pipeline Catalog Templates](./catalog-templates.md)
+* Lab 6 - [Cross Team Collaboration](./cross-team-collaboration.md)
+* Lab 7 - [Pipeline with Interactive Input](./input.md)
 
 **Optional Labs:**
 
