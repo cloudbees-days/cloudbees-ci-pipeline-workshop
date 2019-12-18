@@ -55,4 +55,4 @@ pipeline {
 }
 ```
 
-You may head back to the related lab [*Lab 2. Stage specific agents*](./stage-specific-agents.md) or proceed to the main list of the [**labs**](./README.md#workshop-labs) if you like.
+You may proceed to the main list of the [**labs**](./README.md#workshop-labs) if you would like to explore other labs.

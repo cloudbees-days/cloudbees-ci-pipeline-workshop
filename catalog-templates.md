@@ -40,4 +40,4 @@ As part of the deployment to *staging* the Pipeline Template Catalog job will cr
 ~~### Cross Team Collaboration
 In addition to deploying to the *staging* environment, the Pipeline Template will also pubslish a Cross Team Collaboration event `containerImagePush` that the Core Workshop security team is listening for - anytime that this event is publish a job will be triggered on the **team-sec** Team Master to scan the image you just published with [Anchore](https://anchore.com/). Your application will not be deployed to production unless it passes this scan.~~
 
-You may proceed to the next lab [*Lab 6. Cross Team Collaboration*](./cross-team-collaboration.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 6 - Cross Team Collaboration*](./cross-team-collaboration.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

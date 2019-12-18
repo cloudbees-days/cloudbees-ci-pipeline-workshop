@@ -145,4 +145,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 2. Stage specific agents*](./stage-specific-agents.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 2 - Stage specific agents*](./stage-specific-agents.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
