@@ -155,4 +155,4 @@ You've reached the end of the CloudBees Core workshop! Click here to head back t
 
 If you are interested to learn more about ways to monitor your Jenkins platform and measure to improve your DevOps performance using Value Streams, recommend proceeding to the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
 
-You may also check out the other labs offered by us here: [CloudBees Days Workshop](https://github.com/cloudbees-days).
+You may also check out the other labs offered by us here: [CloudBees Days Workshops](https://github.com/cloudbees-days).
