@@ -23,9 +23,10 @@ Next, everyone will get their own Jenkins masters referred to as a Team Master.
 3. **Name this team** - enter a name for your team - **IMPORTANT: to ensure uniqueness, use your GitHub username** and then click **Next**;<p><img src="img/setup/setup-name-this-team.png" width=450/>
 4. **Choose an icon for this team** to help uniquely identify your team - select an icon and color for your team and then click **Next**;
 5. **Add people to this team** - your user will show up as a **Team Admin** and we won't be adding any additional users right now, but feel free to look around and then click **Next**;
-6. **Select team master creation recipe** - click on the drop-down to see the options, but select the top option: **Workshop Default** recipe;<p><img src="img/setup/setup-create-team-recipe-2.png" width=450/>
-7. Finally, click the **Create team** button. <p><img src="img/setup/setup-create-team.png" width=450/>
-8. While your master is being  created (**it takes anywhere from 2-3 minutes to provision your Team Master**), move onto the next section **Create a GitHub.com user account**
+6. **Select the cluster endpoint to create the team in** - use the default value ***kubernetes***;
+7. **Select team master creation recipe** - click on the drop-down to see the options, but select the top option: **Workshop Default** recipe;<p><img src="img/setup/setup-create-team-recipe-2.png" width=450/>
+8. Finally, click the **Create team** button. <p><img src="img/setup/setup-create-team.png" width=450/>
+9. While your master is being  created (**it takes anywhere from 2-3 minutes to provision your Team Master**), move onto the next section **Create a GitHub.com user account**
 
 ## Create a GitHub.com user account
 Setup a GitHub.com user account that will be used later in this workshop. If you have an existing GitHub.com account you will be able to use it if you are comfortable using that account to create a GitHub Organization later in the workshop.
