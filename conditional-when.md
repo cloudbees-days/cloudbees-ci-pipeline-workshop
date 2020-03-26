@@ -78,4 +78,4 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 4. Custom Pipeline Pod Templates*](./custom-pipeline-pod-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You may proceed to the next lab [*Lab 4 - Custom Pipeline Pod Templates*](./custom-pipeline-pod-templates.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.

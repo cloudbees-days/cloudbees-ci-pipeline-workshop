@@ -8,6 +8,7 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     stage('Deploy') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       input {
@@ -19,6 +20,8 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     }
 ```
 
+|NOTE: We added the the `beforeInput` option set to `true` so that the `when` condition will be checked before the `input` - if we didn't add that option then the `input` would be executed before the `when` condition and it would execute for all branches, not just the `master` branch.
+
 2. Navigate to the **helloworld-nodejs** job in Blue Ocean on your Team Master and the job for the **master** branch should be running or queued to run. Note the `input` prompt during the `Deploy` stage. Go ahead and click the **Proceed** button and the job will complete successfully.  *The `input` prompt is also available in the Console log and classic Stage View.* <p><img src="img/input/input_basic.png" width=800/>
 
 3. If you hadn't clicked on either the **Proceed** or **Abort** button in the `input` prompt then your Team Master would haved waited indefinitely for a user response. Let's fix that by setting a timeout. Earlier we used `options` at the global `pipeline` level to set the ***Discard old builds*** strategy for your Team Master with the `buildDiscarder` `option`. Now we will configure `options` at the `stage` level. We will add a `timeout` `option` for the **Deploy** `stage` using the [`stage` `options` directive](https://jenkins.io/doc/book/pipeline/syntax/#stage-options). Update the **Deploy** `stage` to match the following in the **master** branch and then commit the changes:
@@ -27,6 +30,7 @@ In this exercise, we will see how you can capture interactive input in your Jenk
     stage('Deploy') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       options {
@@ -74,7 +78,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
       }
 ```
 
-2. So, we added one additonal configuration option for our `input` directive: `submitterParameter`. Setting the  `submitterParameter` option will result in a Pipeline environmental variable named `APPROVER` being set with the value being the username of the user that submitted the `input`. In the example above it will either be **beedemo-ops**. Update the `steps` section so the `echo` step in your `Jenkinsfile` Pipeline script will print the `APPROVER` environmental variable and then commit the changes:
+2. So, we added one additonal configuration option for our `input` directive: `submitterParameter`. Setting the  `submitterParameter` option will result in a Pipeline environmental variable named `APPROVER` being set with the value being the username of the user that submitted the `input`. In the example above it will be **beedemo-ops**. Update the `steps` section so the `echo` step in your `Jenkinsfile` Pipeline script will print the `APPROVER` environmental variable and then commit the changes:
 
 ```
       steps {
@@ -82,7 +86,7 @@ Now that we all have a new team member, you can add them as a `submitter` for th
       }
 ```
 
-3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. If you attempt to approve the `input` you will get an error: <p><img src="img/input/input_submitter_error.png" width=800/>
+3. Navigate to the **master** branch of your **helloworld-nodejs** job in Blue Ocean on your Team Master. The job should be waiting for `input`: <p><img src="img/input/input_submitter_pending.png" width=800/>
 4. The ***submitter*** needs to navigate to the **master** branch of your **helloworld-nodejs** job on your Team Master to approve the `input` of your **helloworld-nodejs** Pipeline. You can use the *Team switcher* to quickly navigate to another Team Master that you are a member. The *Team switcher* drop-down will appear in the top right of your screen once you have been added as a member to another Team Master. The ***submitter*** needs to switch to the Team where they are a *Team Guest* member by selecting that team from the *Team switcher* drop-down. <p><img src="img/input/input_submitter_team_switcher.png" width=600/>
 5. As the ***submitter*** navigate to the **helloworld-nodejs** job on your new team and approve the `input`. Note the output of the `echo` step. <p><img src="img/input/input_submitter_approved_by.png" width=850/>
 
@@ -102,7 +106,12 @@ pipeline {
   }
   stages {
     stage('Test') {
-      agent { label 'nodejs-app' }
+      agent {
+        kubernetes {
+          label 'nodejs-app-pod-2'
+          yamlFile 'nodejs-pod.yaml'
+        }
+      }
       steps {
         checkout scm
         container('nodejs') {
@@ -114,6 +123,7 @@ pipeline {
     stage('Build and Push Image') {
       when {
         beforeAgent true
+        beforeInput true
         branch 'master'
       }
       steps {
@@ -141,4 +151,8 @@ pipeline {
 }
 ```
 
-You may proceed to the next lab [*Lab 9. The options Directive*](./options-directive.md) or head back to the main list of the [**labs**](./README.md#workshop-labs) when you are ready.
+You've reached the end of the CloudBees Core workshop! Click here to head back to the main list of [**labs**](./README.md#workshop-labs).
+
+If you are interested to learn more about ways to monitor your Jenkins platform and measure to improve your DevOps performance using Value Streams, recommend proceeding to the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
+
+You may also check out the other labs offered by us here: [CloudBees Days Workshops](https://github.com/cloudbees-days).

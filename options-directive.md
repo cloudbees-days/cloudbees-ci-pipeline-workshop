@@ -55,6 +55,4 @@ pipeline {
 }
 ```
 
-You've reached the end of the workshop! You can head back to the main list of [**labs**](./README.md#workshop-labs) if you like.
-
-Please check out the [CloudBees Core for K8s CD/Jenkins X Workshop](https://github.com/cloudbees-days/jenkins-x-workshop) and the [CloudBees DevOptics Workshop](https://github.com/cloudbees-days/devoptics-workshop).
+You may proceed to the main list of the [**labs**](./README.md#workshop-labs) if you would like to explore other labs.
